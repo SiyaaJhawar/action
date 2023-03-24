@@ -15,7 +15,7 @@ jobs:
 
         
       - name: 'Run my action'
-        uses: SiyaaJhawar/action@main
+        uses: SiyaaJhawar/action/myaction@main
         with:
           message: 'Hello, world!'
       - name: Import @actions/core
