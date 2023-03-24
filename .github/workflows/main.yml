@@ -11,10 +11,15 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@v3
       - name: Install Dependencies
-        run: npm install @actions/core
+        run: npm install 
         
       - name: 'Run my action'
         uses: SiyaaJhawar/action/myaction@main
         with:
           message: 'Hello, world!'
+      - name: Import @actions/core
+        run: npm install --save @actions/core
+        
+      - name: Use @actions/core in My Action
+        run: node index.js
      
