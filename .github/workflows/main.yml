@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Print a message'
-        uses: SiyaaJhawar/action/actions/print-message@main
+        uses: SiyaaJhawar/action/print-message@main
         with:
           message: 'Hello, world!'
