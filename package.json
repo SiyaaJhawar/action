@@ -1,5 +1,5 @@
 {
-  "name": "my-repo",
+  "name": "action",
   "version": "1.0.0",
   "description": "My GitHub Actions workflow",
   "main": "index.js",
