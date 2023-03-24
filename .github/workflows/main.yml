@@ -10,6 +10,6 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@v2
       - name: 'Run My Action'
-        uses: './my-action'
+        uses: './actions'
         with:
           message: 'Hello, world!'
