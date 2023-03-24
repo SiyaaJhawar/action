@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-
+  workflow_dispatch: 
+  
 jobs:
   call-workflow:
     uses: SiyaaJhawar/action/.github/workflows/reusable.yml@main
