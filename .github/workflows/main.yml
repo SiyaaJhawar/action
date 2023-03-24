@@ -19,7 +19,7 @@ jobs:
      
 
       - name: Install required modules
-        run: npm install @actions/core
+        run: npm i @actions/core
 
       - name: Import @actions/core
         run: npm install --save @actions/core
