@@ -4,7 +4,7 @@
   "description": "My GitHub Actions workflow",
   "main": "index.js",
   "dependencies": {
-    "@actions/core": "^1.2.3"
+    "@actions/core": "1.2.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
