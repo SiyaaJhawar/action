@@ -14,14 +14,14 @@ jobs:
         run: npm cache clean --force
       -  run: npm install 
       -  run: npm install @actions/core
-
+      - name: Import @actions/core
+        run: npm install --save @actions/core
         
       - name: 'Run my action'
         uses: SiyaaJhawar/action/myaction@main
         with:
           message: 'Hello, world!'
-      - name: Import @actions/core
-        run: npm install --save @actions/core
+      
         
     
      
