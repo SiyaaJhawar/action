@@ -1,0 +1,13 @@
+name: 'My Reusable Workflow'
+
+on:
+
+  workflow_call:
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Print a message'
+        uses: SiyaaJhawar/action/actions/print-message@main
+        with:
+          message: 'Hello, world!'
