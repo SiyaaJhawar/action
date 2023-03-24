@@ -6,10 +6,13 @@ on:
 jobs:
   my-job:
     runs-on: ubuntu-latest
+   
     steps:
       - name: 'Checkout Repository'
         uses: actions/checkout@v2
+        
       - name: 'Run my action'
         uses: SiyaaJhawar/action/myaction@main
         with:
           message: 'Hello, world!'
+     
