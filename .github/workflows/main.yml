@@ -10,6 +10,12 @@ jobs:
     steps:
       - name: 'Checkout Repository'
         uses: actions/checkout@v3
+      - name: Setup Node.js and actions
+        uses: actions/setup-node@v2
+        with:
+           node-version: '14'
+    
+           packages: 'actions/toolkit'
         
       - name: 'Run my action'
         uses: SiyaaJhawar/action/myaction@main
