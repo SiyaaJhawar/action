@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: 'Checkout Repository'
         uses: actions/checkout@v2
-      - name: 'actions'
-        uses: './action'
+      - name: 'Run my action'
+        uses: SiyaaJhawar/action/myaction@main
         with:
           message: 'Hello, world!'
