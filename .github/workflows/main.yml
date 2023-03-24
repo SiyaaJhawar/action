@@ -11,7 +11,9 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@v3
       - name: Install Dependencies
-        run: npm install @actions/core
+        run: npm cache clean --force
+      -  run: npm install 
+      -  run: npm install @actions/core
 
         
       - name: 'Run my action'
