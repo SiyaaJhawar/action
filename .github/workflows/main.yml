@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: foo
-        uses: SiyaaJhawar/action@main
+        uses: SiyaaJhawar/action/myaction@main
         with:
           who-to-greet: 'SiyaaJhawar'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
