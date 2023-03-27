@@ -10,8 +10,7 @@ jobs:
     steps:
       - name: Print message
         uses: SiyaaJhawar/action/myaction@main
-        with:
-          message: 'Hello, world!'
+      
 
 
       
