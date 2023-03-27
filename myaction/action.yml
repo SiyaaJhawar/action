@@ -6,6 +6,7 @@ inputs:
     required: true
 runs:
   using: 'composite'
-  steps:
-    - run: echo "${{ inputs.message }}"
+   steps:
+    - name: Print Message
+      run: echo "Hello, world!"
 
