@@ -1,10 +1,11 @@
-name: My Action
-description: My Action description
+name: 'Hello world'
+description: 'printing msg'
+author: 'Siyaa Jhawar'
+  
+
 runs:
-  using: "composite"
-  steps:
-    - run: echo Hello
-    shell: bash
+  using: 'node12'
+  main: 'index.js'
 
 
 
