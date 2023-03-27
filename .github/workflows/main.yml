@@ -2,14 +2,17 @@ name: 'My Reusable Workflow'
 
 on:
 
-  workflow_call:
+ workflow_call:
 
 jobs:
-  my-job:
+  job1:
     runs-on: ubuntu-latest
     steps:
-      - name: Run My action
-        uses: SiyaaJhawar/action/myaction@main
+      - uses: actions/checkout@v2
+      - uses: ./
+      
+      
+       
       
 
 
