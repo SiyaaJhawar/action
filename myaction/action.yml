@@ -1,9 +1,9 @@
 name: My Action
 description: My Action description
 runs:
-  using: 'composite'
-  steps:
-    - name: Print Message
-      run: echo "Hello, world!"
+  using: 'shell'
+  shell: bash
+  command: echo "Hello, world!"
+
 
 
