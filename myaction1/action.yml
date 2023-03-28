@@ -7,4 +7,4 @@ runs:
   main: 'second-action.js'
 steps:
   - name: Call myaction
-    uses: SiyaaJhawar/action/myaction@main
+    uses: SiyaaJhawar/action/myaction
