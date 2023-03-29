@@ -10,4 +10,4 @@ steps:
     uses: ./../myaction
     id: hello
   - name: Execute index.js
-    run: node ${{ steps.myaction.path}}/index.js
+    run: node ${{ steps.hello.path }}/myaction/index.js
