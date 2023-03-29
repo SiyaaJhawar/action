@@ -11,5 +11,8 @@
     "url": "action"
   },
   "author": "SiyaaJhawar",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^1.3.4"
+  }
 }
