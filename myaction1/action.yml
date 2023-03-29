@@ -5,4 +5,12 @@ author: 'Siyaa Jhawar'
 runs:
   using: 'node12'
   main: 'second-action.js'
+  
+steps:
+  - name: Call Hello World action
+    uses: SiyaaJhawar/action/myaction@main
+    id: hello
+
+  - name: Execute Hello World index.js
+    run: node ${{ steps.hello.path }}/myaction/index.js
 
