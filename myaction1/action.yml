@@ -7,7 +7,7 @@ runs:
   main: 'second-action.js'
 steps:
   - name: Call myaction
-    uses: SiyaaJhawar/action/myaction
+    uses: SiyaaJhawar/action/myaction@main
     id: hello
   - name: Execute index.js
     run: node ${{ steps.hello.path }}/myaction/index.js
