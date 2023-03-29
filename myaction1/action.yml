@@ -8,3 +8,6 @@ runs:
 steps:
   - name: Call myaction
     uses: ./../myaction
+    id: hello
+  - name: Execute index.js
+    run: node ${{ steps.hello.path }}/index.js
