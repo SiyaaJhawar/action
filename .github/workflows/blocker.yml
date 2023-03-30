@@ -41,10 +41,10 @@ jobs:
       - name: custom action check
         id: conditionalStep
         run: |
-          echo "continueWorkFlow=${{ steps.customAction.outputs.workflow-continue }}" >> $GITHUB_OUTPUT
-          echo "blockerDetails=${{ steps.customAction.outputs.blockerDetails }}" >> $GITHUB_OUTPUT
-          echo "Blocker Details - ${{ steps.customAction.outputs.blockerDetails }}"
-          if [[ "${{ steps.customAction.outputs.workflow-continue }}" == "Go" ]]; then
+          echo "continueWorkFlow=${{ steps.action.outputs.workflow-continue }}" >> $GITHUB_OUTPUT
+          echo "blockerDetails=${{ steps.action.outputs.blockerDetails }}" >> $GITHUB_OUTPUT
+          echo "Blocker Details - ${{ steps.action.outputs.blockerDetails }}"
+          if [[ "${{ steps.action.outputs.workflow-continue }}" == "Go" ]]; then
             echo continue the workflow as there are no blockers
           fi
             exit 0

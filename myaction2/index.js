@@ -4,14 +4,10 @@ import github from '@actions/github';
 import fs from "fs";
 import connected from 'process';
 import { Console } from "console";
-import { Octokit } from "@octokit/rest";
+//import { Octokit } from "@octokit/rest";
 //import { Octokit } from "@octokit/core";
-import { createPullRequest } from "octokit-plugin-create-pull-request";
-//const core = require('@actions/core');
-//const github = require('@actions/github');
-//const fs = require("fs");
-//const { connected } = require('process');
-//const fetch = require('node-fetch');
+//import { createPullRequest } from "octokit-plugin-create-pull-request";
+
 (async () => {
 
    // const MY_TOKEN = core.getInput('MY_TOKEN');
@@ -38,7 +34,7 @@ import { createPullRequest } from "octokit-plugin-create-pull-request";
         data.forEach(employee => {
             var keys = Object.keys(employee);
 
-            if(employee["employee_age"] >=10){
+            if(employee["employee_age"] <=10){
                 isBlockerExists = true;
                 for (let i = 0; i < keys.length; i++) {
                     var key = keys[i];                    
