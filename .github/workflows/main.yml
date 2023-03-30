@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: SiyaaJhawar/action/myaction@main
-      - uses: SiyaaJhawar/action/myaction1@main
+      - uses: ./myaction
+      - uses: ./myaction1
       
       
        
