@@ -4,7 +4,7 @@ import github from '@actions/github';
 import fs from "fs";
 import connected from 'process';
 import { Console } from "console";
-import { Octokit } from "@octokit/rest";
+//import { Octokit } from "@octokit/rest";
 //import { Octokit } from "@octokit/core";
 import { createPullRequest } from "octokit-plugin-create-pull-request";
 //const core = require('@actions/core');
