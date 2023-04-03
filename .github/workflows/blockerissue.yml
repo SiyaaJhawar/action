@@ -15,6 +15,6 @@ jobs:
       run: |
          curl --request POST \
          --url 'https://softwareag.atlassian.net/rest/api/2/search?jql=issueType=Blocker' \
-          --user 'siyaajhawar4@gmail.com:<api_token>' \
+          --user 'swatig139@gmail.com:<api_token>' \
             --header 'Accept: application/json' \
          --header 'Content-Type: application/json' \
