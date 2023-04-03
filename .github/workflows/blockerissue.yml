@@ -10,9 +10,11 @@ jobs:
     steps:
     - name: Get JIRA Blocker List
       env:
-        JIRA_API_ENDPOINT: https://your-jira-instance.atlassian.net/rest/api/2/
+        
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
       run: |
-        curl -H "Authorization: Basic $(echo -n $JIRA_API_TOKEN | base64)" \
-             -H "Content-Type: application/json" \
-             $JIRA_API_ENDPOINT/search?jql=issueType=Blocker > blocker_list.json
+         curl --request POST \
+         --url 'https://your-domain.atlassian.net/rest/api/3/search' \
+          --user 'swatig139@gmail.com:<api_token>' \
+            --header 'Accept: application/json' \
+         --header 'Content-Type: application/json' \
