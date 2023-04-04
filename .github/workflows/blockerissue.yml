@@ -15,7 +15,7 @@ jobs:
       run: |
       
            curl -X GET \
-           "https://swgup.atlassian.net/rest/api/2/search?filter=allissues" \
+           "https://swgup.atlassian.net/rest/api/2/issues?filter=-4" \
            -H "Authorization: Bearer $JIRA_API_TOKEN" \
            --header 'Accept: application/json' \
             -H "Content-Type: application/json" \
@@ -31,7 +31,7 @@ jobs:
                 "assignee"
              ],
               "fieldsByKeys": false,
-             "jql": "project = swatigup",
+             "jql": "project = All",
               "maxResults": 15,
                "startAt": 0
                }'
