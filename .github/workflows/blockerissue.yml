@@ -15,7 +15,7 @@ jobs:
       run: |
       
            curl -X GET \
-           "https://swgup.atlassian.net/rest/api/2/search?jql=project%20%3D%20swatigup" \
+           "https://swgup.atlassian.net/rest/api/2/search?filter=allissues" \
             --user 'swatig139@gmail.com:<secrets.JIRA_API_TOKEN>' \
            --header 'Accept: application/json' \
           
