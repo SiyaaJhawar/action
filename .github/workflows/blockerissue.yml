@@ -13,10 +13,9 @@ jobs:
         JIRA_API_ENDPOINT: https://swgup.atlassian.net/
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
       run: |
-         curl --request POST \
-         --url 'curl -X GET \
-             -H "Authorization: Bearer <your-access-token>" \
-             -H "Content-Type: application/json" \
-             "https://swgup.atlassian.net/rest/api/2/search?filter=allissues&fields=summary,status,description"
-         
+         run: |
+           curl -X GET \
+          -H "Authorization: Bearer $JIRA_API_TOKEN" \
+          -H "Content-Type: application/json" \
+           "$JIRA_API_ENDPOINT/rest/api/2/search?filter=allissues&fields=summary,status,description"
          
