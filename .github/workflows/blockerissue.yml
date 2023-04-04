@@ -15,23 +15,8 @@ jobs:
       run: |
       
            curl --request POST \
-           --url 'https://swgup.atlassian.net/rest/api/3/search' \
+           --url 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues' \
            --user 'swatg139@gmail.com:<$secrets.JIRA_API_TOKEN>' \
            --header 'Accept: application/json' \
            --header 'Content-Type: application/json' \
-           --data '{
-            "expand": [
-             "names",
-            "schema",
-           "operations"
-                 ],
-             "fields": [
-             "summary",
-               "status",
-               "assignee"
-                  ],
-               "fieldsByKeys": true,
-             "jql": "filter = allissues",
-              "maxResults": 15,
-               "startAt": 0
-                  }'
+         
