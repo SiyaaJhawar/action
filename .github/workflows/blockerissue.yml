@@ -31,7 +31,7 @@ jobs:
                 "assignee"
              ],
               "fieldsByKeys": true,
-             "jql": "filter=-4",
+             "jql": "ORDER%20BY%20Created",
               "maxResults": 15,
                "startAt": 0
                }'
