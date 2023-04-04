@@ -15,7 +15,7 @@ jobs:
       run: |
       
            curl -X GET \
-           "https://swgup.atlassian.net/rest/api/3/search?issuetype != Epic ORDER BY updated DESC" \
+           "https://swgup.atlassian.net/rest/api/3/search?jql=project=SWT&filter=allissues&fields=summary,status" \
             --user 'swatig139@gmail.com:<secrets.JIRA_API_TOKEN>' \
            --header 'Accept: application/json' \
           
