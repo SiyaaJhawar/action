@@ -32,7 +32,7 @@ jobs:
              ],
               "fieldsByKeys": true,
              "jql": "filter=-4",
-              "maxResults": 6,
+              "maxResults": 15,
                "startAt": 0
                }'
 
