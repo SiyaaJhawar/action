@@ -32,7 +32,7 @@ jobs:
              ],
               "fieldsByKeys": false,
              "jql": "project = All",
-              "maxResults": 15,
+              "maxResults": 6,
                "startAt": 0
                }'
 
