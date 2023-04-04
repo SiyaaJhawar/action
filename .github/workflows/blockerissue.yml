@@ -14,9 +14,25 @@ jobs:
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
       run: |
       
-           curl --request GET \
+           curl --request POST \
            "https://swgup.atlassian.net/rest/api/3/search?filter=allissues" \
             --user 'swatig139@gmail.com:<secrets.JIRA_API_TOKEN>' \
            --header 'Accept: application/json' \
             -H "Content-Type: application/json" \
+                 --data '{
+            "expand": [
+            "names",
+            "schema",
+             "operations"
+             ],
+            "fields": [
+               "summary",
+                "status",
+                "assignee"
+             ],
+              "fieldsByKeys": ,
+             "jql": "project: SWT",
+              "maxResults": 6,
+               "startAt": 0
+               }'
           
