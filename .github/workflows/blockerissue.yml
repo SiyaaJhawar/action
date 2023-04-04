@@ -17,5 +17,4 @@ jobs:
            curl -X GET \
           -H "Authorization: Bearer $JIRA_API_TOKEN" \
           -H "Content-Type: application/json" \
-           "$JIRA_API_ENDPOINT/rest/api/2/search?jql=project=SWT AND status=Open&fields=summary,status"
-         
+           "$JIRA_API_ENDPOINT/rest/api/2/search?jql=project=SWT"         
