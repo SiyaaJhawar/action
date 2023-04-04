@@ -30,8 +30,8 @@ jobs:
                 "status",
                 "assignee"
              ],
-              "fieldsByKeys": false,
-             "jql": "project = All",
+              "fieldsByKeys": ,
+             "jql": "filter=allissues",
               "maxResults": 6,
                "startAt": 0
                }'
