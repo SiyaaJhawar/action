@@ -31,7 +31,7 @@ jobs:
                 "assignee"
              ],
               "fieldsByKeys": false,
-             "jql": "project = SWT",
+             "jql": "project = swatigup",
               "maxResults": 15,
                "startAt": 0
                }'
