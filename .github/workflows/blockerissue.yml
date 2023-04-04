@@ -17,5 +17,5 @@ jobs:
            curl -X GET \
            -H "Authorization: Bearer $JIRA_API_TOKEN" \
             -H "Content-Type: application/json" \
-           "JIRA_API_ENDPOINT/rest/api/2/search?jql=project%20%3D%20"swatigup"%20%20ORDER%20BY%20created%20DESC"
+           "$JIRA_API_ENDPOINT/rest/api/2/search?jql=project=SWT&filter=allissues&fields=summary,status"
         
