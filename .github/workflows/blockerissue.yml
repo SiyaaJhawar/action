@@ -15,7 +15,7 @@ jobs:
       run: |
       
            curl -X POST \
-           "https://swgup.atlassian.net/rest/api/2/search" \
+           "https://swgup.atlassian.net/rest/api/2/search?filter=allissues" \
            -H "Authorization: Bearer $JIRA_API_TOKEN" \
            --header 'Accept: application/json' \
             -H "Content-Type: application/json" \
@@ -31,7 +31,7 @@ jobs:
                 "assignee"
              ],
               "fieldsByKeys": true,
-             "jql": "ORDER%20BY%20Created",
+             "jql": "project = SWT",
               "maxResults": 15,
                "startAt": 0
                }'
