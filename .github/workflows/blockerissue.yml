@@ -15,7 +15,7 @@ jobs:
       run: |
       
            curl -X GET \
-           "https://swgup.atlassian.net/rest/api/2/issues?filter=-4" \
+           "https://swgup.atlassian.net/rest/api/2/search" \
            -H "Authorization: Bearer $JIRA_API_TOKEN" \
            --header 'Accept: application/json' \
             -H "Content-Type: application/json" \
