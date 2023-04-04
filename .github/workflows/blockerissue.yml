@@ -15,8 +15,24 @@ jobs:
       run: |
       
            curl -X GET \
+           "https://swgup.atlassian.net/rest/api/2/search" \
            -H "Authorization: Bearer $JIRA_API_TOKEN" \
             -H "Content-Type: application/json" \
-           "https://swgup.atlassian.net/rest/api/2/search?jql=project%20is%20not%20EMPTY"
+            --data '{
+            "expand": [
+            "names",
+            "schema",
+             "operations"
+             ],
+            "fields": [
+               "summary",
+                "status",
+                "assignee"
+             ],
+              "fieldsByKeys": false,
+             "jql": "project = All",
+              "maxResults": 15,
+               "startAt": 0
+               }'
 
         
