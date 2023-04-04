@@ -31,7 +31,7 @@ jobs:
                 "assignee"
              ],
               "fieldsByKeys": true,
-             "jql": "project = All",
+              "jql": "project = SWT",
               "maxResults": 3,
                "startAt": 0
                }'
