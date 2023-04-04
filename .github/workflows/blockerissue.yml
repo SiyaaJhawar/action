@@ -15,24 +15,23 @@ jobs:
       run: |
       
            curl --request POST \
-           "https://swgup.atlassian.net/rest/api/3/search?filter=allissues" \
-            --user 'swatig139@gmail.com:<secrets.JIRA_API_TOKEN>' \
-            -H 'Content-Type: application/json' \
-            -H 'Accept-Type: application/json'
-                 --data '{
+           --url 'https://swgup.atlassian.net/rest/api/3/search' \
+           --user 'swatg139@gmail.com:<$secrets.JIRA_API_TOKEN>' \
+           --header 'Accept: application/json' \
+           --header 'Content-Type: application/json' \
+           --data '{
             "expand": [
-            "names",
+             "names",
             "schema",
-             "operations"
-             ],
-            "fields": [
-               "summary",
-                "status",
-                "assignee"
-             ],
-              "fieldsByKeys": ,
-              "jql": "project: SWT",
-              "maxResults": 6,
+           "operations"
+                 ],
+             "fields": [
+             "summary",
+               "status",
+               "assignee"
+                  ],
+               "fieldsByKeys": true,
+             "jql": "project = SWT",
+              "maxResults": 15,
                "startAt": 0
-               }'
-          
+                  }'
