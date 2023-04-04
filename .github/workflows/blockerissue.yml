@@ -14,7 +14,7 @@ jobs:
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
       run: |
       
-           curl -X POST \
+           curl -X GET \
            "https://swgup.atlassian.net/rest/api/2/search" \
            -H "Authorization: Bearer $JIRA_API_TOKEN" \
            --header 'Accept: application/json' \
@@ -31,7 +31,7 @@ jobs:
                 "assignee"
              ],
               "fieldsByKeys": true,
-              "jql": "project = SWT",
+              "jql": "project = swatigup",
               "maxResults": 3,
                "startAt": 0
                }'
