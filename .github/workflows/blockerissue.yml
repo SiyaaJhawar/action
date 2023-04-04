@@ -15,7 +15,7 @@ jobs:
       run: |
       
            curl --request GET \
-           --url 'https://swgup.atlassian.net/rest/api/3/search?jql=project%20%3D%20"swatigup"%20%20ORDER%20BY%20created%20DESC' \
+           --url 'https://swgup.atlassian.net/rest/api/3/search?jql=Project%20%3D%20"swatigup"%20%20ORDER%20BY%20created%20DESC' \
            --user 'swatg139@gmail.com:<$secrets.JIRA_API_TOKEN>' \
            --header 'Accept: application/json' \
            --header 'Content-Type: application/json'
