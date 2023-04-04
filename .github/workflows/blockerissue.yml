@@ -31,7 +31,7 @@ jobs:
                 "assignee"
              ],
               "fieldsByKeys": true,
-             "jql": "filter=allissues",
+             "jql": "filter=-4",
               "maxResults": 6,
                "startAt": 0
                }'
