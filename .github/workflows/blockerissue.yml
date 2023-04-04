@@ -15,25 +15,7 @@ jobs:
       run: |
       
            curl -X GET \
-           "https://swgup.atlassian.net/rest/api/2/search" \
+           "https://swgup.atlassian.net/rest/api/2/search?jql=project%20%3D%20SWT" \
            -H "Authorization: Bearer $JIRA_API_TOKEN" \
            --header 'Accept: application/json' \
-            -H "Content-Type: application/json" \
-            --data '{
-            "expand": [
-            "names",
-            "schema",
-             "operations"
-             ],
-            "fields": [
-               "summary",
-                "status",
-                "assignee"
-             ],
-              "fieldsByKeys": true,
-              "jql": "project = swatigup",
-              "maxResults": 3,
-               "startAt": 0
-               }'
-
-        
+          
