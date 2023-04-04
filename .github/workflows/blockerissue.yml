@@ -15,7 +15,7 @@ jobs:
       run: |
       
            curl -X GET \
-           "https://swgup.atlassian.net/rest/api/2/search?jjql=project%20%3D%20"swatigup"%20%20ORDER%20BY%20created%20DESC" \
+           "https://swgup.atlassian.net/rest/api/2/search?jql=%20%20ORDER%20BY%20created%20DESC" \
            -H "Authorization: Bearer $JIRA_API_TOKEN" \
            --header 'Accept: application/json' \
           
