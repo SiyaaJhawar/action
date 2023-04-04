@@ -17,5 +17,5 @@ jobs:
            curl -X GET \
            -H "Authorization: Bearer $JIRA_API_TOKEN" \
             -H "Content-Type: application/json" \
-             "$JIRA_API_ENDPOINT/rest/api/2/search?jql=ORDER%20BY%20Created&maxResults=50&startAt=0"
+             "$JIRA_API_ENDPOINT/rest/api/3/issue?jql=ORDER%20BY%20Created&maxResults=50&startAt=0"
         
