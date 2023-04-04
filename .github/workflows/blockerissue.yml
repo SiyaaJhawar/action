@@ -15,7 +15,7 @@ jobs:
       run: |
       
            curl --request GET \
-           --url 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues' \
+           --url 'https://swgup.atlassian.net/rest/api/3/search' \
            --user 'swatg139@gmail.com:<$secrets.JIRA_API_TOKEN>' \
            --header 'Accept: application/json' \
            --header 'Content-Type: application/json'
