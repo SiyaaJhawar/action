@@ -9,16 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Get JIRA Blocker List
-    - uses: actions/checkout@v3
-      env:
-     
-        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-    - run: --user 'swatig139@gmail.com:${{ secrets.JIRA_API_TOKEN }}'      
-
-    - run: npm install
-    - run: npm install xmlhttprequest
-    # - run: npm install xhr2
-     
-    - run: node jira.js
+    -  uses: actions/checkout@v3
+    -  env:
+         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+       run: |
+         npm install
+         npm install xmlhttprequest
+         node jira.js
      
      
