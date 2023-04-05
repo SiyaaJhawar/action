@@ -1,4 +1,5 @@
 import { XMLHttpRequest } from "xmlhttprequest";
+require('dotenv').config();
 
  
 var xhr = new XMLHttpRequest();
