@@ -12,6 +12,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
+      - name: Set JIRA username and API token
+        env:
+          JIRA_USERNAME: swatig139@gmail.com
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        run: echo "JIRA_USERNAME=$JIRA_USERNAME JIRA_API_TOKEN=$JIRA_API_TOKEN"
       - name: Install dependencies
         run: |
           npm install
