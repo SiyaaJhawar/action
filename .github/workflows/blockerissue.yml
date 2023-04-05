@@ -22,9 +22,8 @@ jobs:
           npm install
           npm install xmlhttprequest
       - name: Retrieve JIRA Blocker List
-        env:
-          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-        run: node jira.js --token $JIRA_API_TOKEN
+       
+        run: node jira.js 
 
      
      
