@@ -1,6 +1,6 @@
 import { XMLHttpRequest } from "xmlhttprequest";
-require('dotenv').config();
-
+import dotenv from 'dotenv';
+dotenv.config();
  
 var xhr = new XMLHttpRequest();
 var username = process.env.JIRA_USERNAME;
