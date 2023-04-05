@@ -2,7 +2,10 @@ import { XMLHttpRequest } from "xmlhttprequest";
 
  
 var xhr = new XMLHttpRequest();
+var username = "swatg139@gmail.com";
+var apiToken = "$secrets.JIRA_API_TOKEN";
 xhr.open("GET", "https://swgup.atlassian.net/rest/api/3/search?filter=allissues", true);
+xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + apiToken));
 xhr.send();
  
 xhr.onreadystatechange = function () {
