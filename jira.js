@@ -1,4 +1,5 @@
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+import { XMLHttpRequest } from "xmlhttprequest";
+
  
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "https://swgup.atlassian.net/rest/api/3/search?filter=allissues", true);
