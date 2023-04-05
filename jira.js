@@ -20,7 +20,7 @@ xhr.onreadystatechange = function () {
     for (var key in result) {
       if (result.hasOwnProperty(key)) {
         var val = result[key];
-        console.log(result.hasOwnProperty(key));
+       
         if (Array.isArray(val)) {
           val.forEach(function(item) {
             for (var k in item) {
