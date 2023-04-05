@@ -2,8 +2,10 @@ import { XMLHttpRequest } from "xmlhttprequest";
 
  
 var xhr = new XMLHttpRequest();
-var username = "swatig139@gmail.com";
-var apiToken = "ATATT3xFfGF0mqSJBvyjdoYaK7MSraNbWxCKhCD38fo80eo_GTkgyX6oLGRQ8HmiOHaG0axUg0uexz7UhY6_Acl297byxTRK5H7-CCuqPVOCKvdQZM1nn9OnmFV_ZSBqRkVUfgIQBj-NhaB1R35Cw1MXx2Z0noVPapKlTVVDhdAElbHVYaWd2HQ=60DEC96F";
+var username = process.env.JIRA_USERNAME;
+var apiToken = process.env.JIRA_API_TOKEN;
+console.log(`Username: ${username}`);
+console.log(`API Token: ${apiToken}`);
 xhr.open("GET", "https://swgup.atlassian.net/rest/api/3/search?filter=allissues", true);
 xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + apiToken));
 xhr.send();
