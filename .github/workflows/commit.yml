@@ -17,7 +17,7 @@ jobs:
          curl -L \
          -X GET \
              -H "Accept: application/vnd.github+json" \
-             -H "Authorization: Bearer <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>"\
+             -H "Authorization: Bearer <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>"\
              https://api.github.com/repos/SiyaaJhawar/action/commits/b63d854b9c2d60ba843e7da1106c8076fe203704/comments
        
        
