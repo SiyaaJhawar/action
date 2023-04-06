@@ -6,9 +6,11 @@ const url = `https://api.github.com/repos/SiyaaJhawar/action/git/commits/b63d854
 fetch(url, {
   headers: {
     
-    "Authorization" : 'Token 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',
+    "Authorization" :'Token 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',
+    
      "Accept" : 'application/vnd.github.v3+json'
   }
+  console.log(token);
 })
   .then(response => response.json())
   .then(data => {
