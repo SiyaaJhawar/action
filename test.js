@@ -18,7 +18,7 @@ fetch(url, {
  .then(data => {
     console.log(data);
     // assume you have a JSON response stored in a variable called 'data'
-    const defects = [{"Defect ID":"1"},{"Defect ID":"2"},{"Defect ID":"3"},{"Defect ID":"4"},{"Defect ID":"5"}];
+    const defects = [{"Defect ID":"WFL-110"},{"Defect ID":"WFL-101"},{"Defect ID":"WFL-1001"},{"Defect ID":"WFL-1101"},{"Defect ID":"WFL-1001"}];
 
 const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
 console.log(defectIds);
