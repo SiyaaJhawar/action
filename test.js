@@ -10,7 +10,7 @@ fetch(url, {
     
      "Accept" : 'application/vnd.github.v3+json'
   }
-  console.log(token);
+
 })
   .then(response => response.json())
   .then(data => {
