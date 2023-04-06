@@ -14,7 +14,8 @@ jobs:
       env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-         curl -L GET \
+         curl -L \
+         -X GET \
              -H "Accept: application/vnd.github+json" \
              -H "Authorization: Bearer <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>"\
              https://api.github.com/repos/SiyaaJhawar/action/git/commits/b63d854b9c2d60ba843e7da1106c8076fe203704
