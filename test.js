@@ -5,7 +5,7 @@ const url = `https://api.github.com/repos/SiyaaJhawar/action/git/commits/b63d854
 
 fetch(url, {
   headers: {
-    Authorization: "Bearer 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",
+    Authorization: "Bearer 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",
     Accept: "application/vnd.github.v3+json"
   }
 })
