@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: Commit
       env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       GITHUB_TOKEN: ${{ secrets.Commit }}
       run: |
          curl --request GET \
          --url https://api.github.com/repos/SiyaaJhawar/action/git/commits/b63d854b9c2d60ba843e7da1106c8076fe203704 \
