@@ -5,11 +5,18 @@ on:
     branches:
       - main
   workflow_dispatch:
-
 jobs:
-  job1:
+  commit_comments:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+    - name: Commit
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+         curl --request GET \
+         --url https://api.github.com/repos/SiyaaJhawar/action/git/commits/b63d854b9c2d60ba843e7da1106c8076fe203704 \
+         --header 'authorization: Bearer ACCESS_TOKEN' \
+         --header 'content-type: application/json' \
        
        
