@@ -6,7 +6,7 @@ const url = `https://api.github.com/repos/SiyaaJhawar/action/git/commits/b63d854
 fetch(url, {
   headers: {
     
-    "Authorization" : `Basic ${btoa("SiyaaJhawar:Siyaa@12345")}`
+    "Authorization" : `Basic ${btoa("SiyaaJhawar:Siyaa@12345")}`,
     
      "Accept" : 'application/vnd.github.v3+json'
   }
