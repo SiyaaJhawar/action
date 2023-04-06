@@ -16,6 +16,11 @@ fetch(url, {
   .then(response => response.json())
   .then(data => {
     console.log(data);
-    // Do something with the data
+    // assume you have a JSON response stored in a variable called 'response'
+const defectIds = response.defects.map(defect => defect.id);
+const commitComment = `Defect IDs: ${defectIds.join(', ')}`;
+
+// commit the changes with the commitComment
+
   })
   .catch(error => console.error(error));
