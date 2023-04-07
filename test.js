@@ -16,14 +16,23 @@ fetch(url, {
   .then(response => response.json())
  
  .then(data => {
-    console.log(data);
-  const defect = data.map(comment => {
-      const defectId = comment.body.match(/Defect ID: (\w+-\d+)/);
-      return { "Defect ID": defectId ? defectId[1] : "" };
-    });
-    console.log(defect);
-    const defectIds = defect.map(defect => defect["Defect ID"]).join(",");
-    console.log(defectIds);
+  
+  console.log("API response:", data);
+
+    const defects = data.map(comment => {
+      const match = comment.body.match(/\bDefect ID:\s*(\S+)\b/);
+      if (match) {
+        return { "Defect ID": match[1] };
+      } else {
+        return null;
+      }
+    }).filter(Boolean);
+
+    console.log("Defects:", defects);
+
+    const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
+    console.log("Defect IDs:", defectIds);
+
 
   })
   .catch(error => console.error(error));
