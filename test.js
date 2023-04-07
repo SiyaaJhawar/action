@@ -18,13 +18,12 @@ fetch(url, {
  .then(response => response.json())
   .then(data => {
     console.log(data);
-  const defects = [
-      {"Defect ID":"WFL-110"},
-      {"Defect ID":"WFL-101"},
-      {"Defect ID":"WFL-1001"},
-      {"Defect ID":"WFL-1101"}
-    ];
-    const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
-    console.log(defectIds);
+  const comments = data.map(item => item.body);
+  const regex = /Defect ID: (\w+)/g;
+  const defectIds = comments
+    .flatMap(comment => comment.match(regex))
+    .map(match => match.split(":")[1].trim())
+    .join(",");
+  console.log(defectIds);
   })
   .catch(error => console.error(error));
