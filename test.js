@@ -19,11 +19,13 @@ fetch(url, {
   .then(data => {
     console.log(data);
   const defects = data.map(comment => {
-    const match = comment.body.match(/Defect ID:\s*(\w+)/);
-    return match ? { "Defect ID": match[1] } : null;
-  }).filter(defect => defect != null);
-  
-  const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
-  console.log(defectIds);
+  const defectMatch = comment.body.match(/Defect ID: (\w+)/);
+  if (defectMatch) {
+    return { "Defect ID": defectMatch[1] };
+  }
+});
+const defectIds = defects.filter(Boolean).map(defect => defect["Defect ID"]).join(",");
+console.log(defectIds);
+
   })
   .catch(error => console.error(error));
