@@ -17,13 +17,13 @@ fetch(url, {
  
  .then(data => {
     console.log(data);
-  const defect.id = data.map(comment => {
+  const defect = data.map(comment => {
       const defectId = comment.body.match(/Defect ID: (\w+-\d+)/);
       return { "Defect ID": defectId ? defectId[1] : "" };
     });
-    console.log(defect.id);
-    const defect.Ids = defects.map(defect => defect["Defect ID""]).join(",");
-    console.log(defect.Ids);
+    console.log(defect);
+    const defectIds = defects.map(defect => defect["Defect ID""]).join(",");
+    console.log(defectIds);
 
   })
   .catch(error => console.error(error));
