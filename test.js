@@ -18,14 +18,10 @@ fetch(url, {
  .then(response => response.json())
   .then(data => {
     console.log(data);
-  const defects = data.map(comment => {
-  const defectMatch = comment.body.match(/Defect ID: (\w+)/);
-  if (defectMatch) {
-    return { "Defect ID": defectMatch[1] };
-  }
-});
-const defectIds = defects.filter(Boolean).map(defect => defect["Defect ID"]).join(",");
-console.log(defectIds);
+  const commentTexts = data.map(comment => comment.body);
+  const defectRegex = /(WFL-\d+)/g;
+  const defectIds = commentTexts.flatMap(text => text.match(defectRegex));
+  console.log(defectIds);
 
   })
   .catch(error => console.error(error));
