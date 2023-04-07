@@ -17,13 +17,13 @@ fetch(url, {
  
  .then(data => {
     console.log(data);
-    // assume you have a JSON response stored in a variable called 'data'
-    const defects = [{"Defect ID":"WFL-110"},{"Defect ID":"WFL-101"},{"Defect ID":"WFL-1001"},{"Defect ID":"WFL-1101"},{"Defect ID":"WFL-1001"}];
-
-const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
-console.log(defectIds);
-
-// commit the changes with the commitComment
+  const defects = data.map(comment => {
+      const defectId = comment.body.match(/Defect ID: (\w+-\d+)/);
+      return { "Defect ID": defectId ? defectId[1] : "" };
+    });
+    console.log(defects);
+    const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
+    console.log(defectIds);
 
   })
   .catch(error => console.error(error));
