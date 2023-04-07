@@ -17,12 +17,12 @@ fetch(url, {
  .then(response => response.json())
   .then(data => {
     console.log(data);
-    const defects = data.map(comment => {
-      const regex = /Defect ID: (\w+)/;
-      const match = comment.body.match(regex);
-      return match ? { "Defect ID": match[1] } : null;
-    }).filter(defect => defect !== null);
-
+  const defects = [
+      {"Defect ID":"WFL-110"},
+      {"Defect ID":"WFL-101"},
+      {"Defect ID":"WFL-1001"},
+      {"Defect ID":"WFL-1101"}
+    ];
     const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
     console.log(defectIds);
   })
