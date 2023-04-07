@@ -17,13 +17,8 @@ fetch(url, {
  .then(response => response.json())
   .then(data => {
     console.log(data);
-    const defects = [
-      {"Defect ID":"WFL-110"},
-      {"Defect ID":"WFL-101"},
-      {"Defect ID":"WFL-1001"},
-      {"Defect ID":"WFL-1101"}
-    ];
-    const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
+   const defects = data.map(comment => comment.body.match(/Defect ID:\s*(\w+)/i)).filter(Boolean).map(match => match[1]);
+    const defectIds = defects.join(",");
     console.log(defectIds);
 
   })
