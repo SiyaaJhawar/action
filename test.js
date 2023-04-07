@@ -17,9 +17,13 @@ fetch(url, {
  .then(response => response.json())
   .then(data => {
     console.log(data);
-   const defects = data.map(comment => comment.body.match(/Defect ID:\s*(\w+)/i)).filter(Boolean).map(match => match[1]);
-    const defectIds = defects.join(",");
-    console.log(defectIds);
+    const defects = data.map(comment => {
+      const regex = /Defect ID: (\w+)/;
+      const match = comment.body.match(regex);
+      return match ? { "Defect ID": match[1] } : null;
+    }).filter(defect => defect !== null);
 
+    const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
+    console.log(defectIds);
   })
   .catch(error => console.error(error));
