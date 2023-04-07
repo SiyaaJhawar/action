@@ -22,8 +22,8 @@ fetch(url, {
       return { "Defect ID": defectId ? defectId[1] : "" };
     });
     console.log(defects);
-    const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
-    console.log(defectIds);
+    const defectIds = defects.map(defect => defect["defect.id"]).join(",");
+    console.log(defect.Ids);
 
   })
   .catch(error => console.error(error));
