@@ -13,26 +13,13 @@ fetch(url, {
   }
 
 })
+
+ fetch('defects.json')
   .then(response => response.json())
- 
- .then(data => {
-  
-  console.log("API response:", data);
-
-    const defects = data.map(comment => {
-      const match = comment.body.match(/\bDefect ID:\s*(\S+)\b/);
-      if (match) {
-        return { "Defect ID": match[1] };
-      } else {
-        return null;
-      }
-    }).filter(Boolean);
-
-    console.log("Defects:", defects);
-
+  .then(data => {
+    const defects = data.defects;
     const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
-    console.log("Defect IDs:", defectIds);
-
+    console.log(defectIds);
 
   })
   .catch(error => console.error(error));
