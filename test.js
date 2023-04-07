@@ -14,10 +14,15 @@ fetch(url, {
 
 })
 
- fetch('defects.json')
-  .then(response => response.json())
+ .then(response => response.json())
   .then(data => {
-    const defects = data.defects;
+    console.log(data);
+    const defects = [
+      {"Defect ID":"WFL-110"},
+      {"Defect ID":"WFL-101"},
+      {"Defect ID":"WFL-1001"},
+      {"Defect ID":"WFL-1101"}
+    ];
     const defectIds = defects.map(defect => defect["Defect ID"]).join(",");
     console.log(defectIds);
 
