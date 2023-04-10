@@ -13,17 +13,20 @@ fetch(url, {
 })
  .then(response => response.json())
   .then(data => {
-    const commentTexts = data.map(comment => comment.body);
-    const defectRegex = /([A-Z0-9]{3})-(\w+)/g;
-    const defectIds = commentTexts.flatMap(text => {
-      const matches = [];
-      let match;
-      while ((match = defectRegex.exec(text))) {
-        matches.push([match[1], match[2]]);
-      }
-      return matches;
-    });
-    const output = defectIds.map(id => id.join('-')).join(',');
-    console.log(output);
+      const commentTexts = data.map(comment => comment.body);
+ const defectRegex = /([A-Z0-9]{3})-(?=C)\w+/g
+ const defectIds = commentTexts.flatMap(text => {
+  const matches = [];
+  let match;
+  while ((match = defectRegex.exec(text))) {
+    matches.push([match[1], match[2]]);
+  }
+  return matches;
+});
+
+const outputString = defectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
+
+
+console.log(outputString);
   })
   .catch(error => console.error(error));
