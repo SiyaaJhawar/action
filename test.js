@@ -18,10 +18,17 @@ fetch(url, {
  .then(response => response.json())
   .then(data => {
     console.log(data);
-  const commentTexts = data.map(comment => comment.body);
-  const defectRegex = /([A-Z]{3})-\d+/g;
-  const defectIds = commentTexts.flatMap(text => text.match(defectRegex));
-  console.log(defectIds);
+ const commentTexts = data.map(comment => comment.body);
+const defectRegex = /([A-Z0-9]{3})-(\w+)/g;
+const defectIds = commentTexts.flatMap(text => {
+  const matches = [];
+  let match;
+  while ((match = defectRegex.exec(text))) {
+    matches.push([match[1], match[2]]);
+  }
+  return matches;
+});
+console.log(defectIds);
 
   })
   .catch(error => console.error(error));
