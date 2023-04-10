@@ -7,7 +7,8 @@ const jiraAuth = {
   password: 'process.env.JIRA_API_TOKEN'
 };
 
-const commentTexts = [WFL-1105, WFL-101, SWT-1, SWT-2, WFL-1015, WFL-1010, WFL-1001, WFL-1002, CLDP-1003, WFL-1001, WFL-1101];
+
+const commentTexts = ['WFL-1105', 'WFL-101', 'SWT-1', 'SWT-2', 'WFL-1015', 'WFL-1010', 'WFL-1001', 'WFL-1002', 'CLDP-1003', 'WFL-1001', 'WFL-1101'];
 const defectIds = commentTexts.flatMap(text => {
   const matches = [];
   let match;
