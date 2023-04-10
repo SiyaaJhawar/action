@@ -19,7 +19,8 @@ fetch(url, {
   .then(data => {
     console.log(data);
   const commentTexts = data.map(comment => comment.body);
- const defectRegex = /^[^-]*/g
+ const defectRegex = /^[A-Z0-9]+(?=-)/g
+
  const defectIds = commentTexts.flatMap(text => {
   const matches = [];
   let match;
