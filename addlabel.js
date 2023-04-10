@@ -1,10 +1,10 @@
 const JiraApi = require('jira-connector');
 
 const defectRegex = /([A-Z]{3})-\d+/g;
-const jiraUrl = '';
+const jiraUrl = 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues';
 const jiraAuth = {
-  username: '<YOUR_JIRA_USERNAME>',
-  password: '<YOUR_JIRA_PASSWORD>'
+  username: 'process.env.JIRA_USERNAME',
+  password: 'process.env.JIRA_API_TOKEN'
 };
 
 const commentTexts = [WFL-1105, WFL-101, SWT-1, SWT-2, WFL-1015, WFL-1010, WFL-1001, WFL-1002, CLDP-1003, WFL-1001, WFL-1101];
