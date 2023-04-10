@@ -18,8 +18,7 @@ fetch(url, {
  .then(response => response.json())
   .then(data => {
     console.log(data);
- const commentTexts = data.map(comment => comment.body);
-const defectRegex = /([A-Z0-9]{3})-(\w+)/g;
+ const defectRegex = /([A-Z0-9]{3})-(\w+)/g;
 const defectIds = commentTexts.flatMap(text => {
   const matches = [];
   let match;
@@ -28,7 +27,10 @@ const defectIds = commentTexts.flatMap(text => {
   }
   return matches;
 });
-console.log(defectIds);
+
+const outputString = defectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
+
+
 
   })
   .catch(error => console.error(error));
