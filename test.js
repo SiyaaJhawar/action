@@ -18,7 +18,7 @@ fetch(url, {
  .then(response => response.json())
   .then(data => {
     console.log(data);
-  const commentTexts = data.map(({ body }) => body);
+const commentTexts = data.map(({ body }) => body);
 const defectRegex = /([A-Z]+-\d+)/g;
 
 const defectIds = commentTexts.flatMap(text => {
@@ -26,11 +26,18 @@ const defectIds = commentTexts.flatMap(text => {
   return Array.from(matches, match => [match[1], match[2]]);
 });
 
-const filteredDefectIds = defectIds.filter(([prefix, suffix]) => prefix && suffix);
+if (defectIds.length === 0) {
+  console.log("No matches found.");
+} else {
+  const filteredDefectIds = defectIds.filter(([prefix, suffix]) => prefix && suffix);
+  if (filteredDefectIds.length === 0) {
+    console.log("No valid defect IDs found.");
+  } else {
+    const outputString = filteredDefectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
+    console.log(outputString);
+  }
+}
 
-const outputString = filteredDefectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
-
-console.log(outputString);
 
   })
   .catch(error => console.error(error));
