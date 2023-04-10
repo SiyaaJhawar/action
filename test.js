@@ -19,7 +19,7 @@ fetch(url, {
   .then(data => {
     console.log(data);
   const commentTexts = data.map(comment => comment.body);
-  const defectRegex = /(WFL-\d+)/g;
+  const defectRegex = /([A-Z]{3})-\d+/g;
   const defectIds = commentTexts.flatMap(text => text.match(defectRegex));
   console.log(defectIds);
 
