@@ -1,11 +1,11 @@
 import JiraApi from 'jira-connector';
 
 
-const defectRegex = /([A-Z]{3})-\d+/g;
+const defectRegex = ([A-Z]{2,3})-\d+;
 const jiraUrl = "https://swgup.atlassian.net/rest/api/2/search?filter=allissues";
 const jiraAuth = {
-  username: 'process.env.JIRA_USERNAME',
-  password: 'process.env.JIRA_API_TOKEN'
+  username: process.env.JIRA_USERNAME,
+  password: process.env.JIRA_API_TOKEN
 };
 
 
