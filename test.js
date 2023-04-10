@@ -15,29 +15,30 @@ fetch(url, {
 
 })
 
- .then(response => response.json())
+   .then(response => response.json())
   .then(data => {
     console.log(data);
-const commentTexts = data.map(({ body }) => body);
-const defectRegex = /([A-Z]+-\d+)/g;
 
-const defectIds = commentTexts.flatMap(text => {
-  const matches = text.matchAll(defectRegex);
-  return Array.from(matches, match => [match[1], match[2]]);
-});
+    const commentTexts = data.map(({ body }) => body);
+    console.log("Comment bodies:", commentTexts);
 
-if (defectIds.length === 0) {
-  console.log("No matches found.");
-} else {
-  const filteredDefectIds = defectIds.filter(([prefix, suffix]) => prefix && suffix);
-  if (filteredDefectIds.length === 0) {
-    console.log("No valid defect IDs found.");
-  } else {
-    const outputString = filteredDefectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
-    console.log(outputString);
-  }
-}
+    const defectRegex = /([A-Z]+-\d+)/g;
+    const defectIds = commentTexts.flatMap(text => {
+      const matches = text.matchAll(defectRegex);
+      console.log("Matches:", Array.from(matches));
+      return Array.from(matches, match => [match[1], match[2]]);
+    });
 
-
+    if (defectIds.length === 0) {
+      console.log("No matches found.");
+    } else {
+      const filteredDefectIds = defectIds.filter(([prefix, suffix]) => prefix && suffix);
+      if (filteredDefectIds.length === 0) {
+        console.log("No valid defect IDs found.");
+      } else {
+        const outputString = filteredDefectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
+        console.log("Defect IDs:", outputString);
+      }
+    }
   })
   .catch(error => console.error(error));
