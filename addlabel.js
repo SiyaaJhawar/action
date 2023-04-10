@@ -55,4 +55,4 @@ defectIds.forEach(defectId => {
         if (error) {
           console.error(error);
         }
-      };
+      }
