@@ -1,4 +1,4 @@
-name: My Workflow
+name: addlabel
 
 on:
   push:
