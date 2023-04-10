@@ -15,24 +15,23 @@ fetch(url, {
   .then(response => response.json())
   .then(data => {
     console.log(data);
-    const commentTexts = data.map(({ body }) => body);
-    const defectRegex = /([A-Z0-9]{3})-(?=C\w{2})\w+/g;
-    const defectIds = commentTexts.flatMap(text => {
-      const matches = text.matchAll(defectRegex);
-      return Array.from(matches, match => [match[1], match[2]]);
-    });
+    const commentTexts = data.map(comment => comment.body);
+ const defectRegex = /([A-Z]+-\d+)/g
 
-    if (defectIds.length === 0) {
-      console.log("No matches found.");
-    } else {
-      const filteredDefectIds = defectIds
-        .map(([prefix, suffix]) => `${prefix}-${suffix}`)
-        .filter(defectId => /^[A-Z]+-\d+$/.test(defectId));
-      if (filteredDefectIds.length === 0) {
-        console.log("No valid defect IDs found.");
-      } else {
-        const outputString = filteredDefectIds.join(", ");
-        console.log(outputString);
+
+ const defectIds = commentTexts.flatMap(text => {
+  const matches = [];
+  let match;
+  while ((match = defectRegex.exec(text))) {
+    matches.push([match[1], match[2]]);
+  }
+  return matches;
+});
+
+const outputString = defectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
+
+
+console.log(outputString);
       }
     }
   })
