@@ -36,3 +36,4 @@ console.log(outputString);
     }
   })
   .catch(error => console.error(error));
+}
