@@ -8,36 +8,31 @@ const password = process.env.GITHUB_API_TOKEN;
 
 fetch(url, {
   headers: {
-    
     "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
     "Accept": "application/vnd.github.v3+json"
   }
-
 })
-
-   .then(response => response.json())
+  .then(response => response.json())
   .then(data => {
     console.log(data);
-
     const commentTexts = data.map(({ body }) => body);
-    console.log("Comment bodies:", commentTexts);
-
     const defectRegex = /([A-Z]+-\d+)/g;
     const defectIds = commentTexts.flatMap(text => {
       const matches = text.matchAll(defectRegex);
-      console.log("Matches:", Array.from(matches));
       return Array.from(matches, match => [match[1], match[2]]);
     });
 
     if (defectIds.length === 0) {
       console.log("No matches found.");
     } else {
-      const filteredDefectIds = defectIds.filter(([prefix, suffix]) => prefix && suffix);
+      const filteredDefectIds = defectIds
+        .map(([prefix, suffix]) => `${prefix}-${suffix}`)
+        .filter(defectId => /^[A-Z]+-\d+$/.test(defectId));
       if (filteredDefectIds.length === 0) {
         console.log("No valid defect IDs found.");
       } else {
-        const outputString = filteredDefectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
-        console.log("Defect IDs:", outputString);
+        const outputString = filteredDefectIds.join(", ");
+        console.log(outputString);
       }
     }
   })
