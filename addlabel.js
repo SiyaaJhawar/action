@@ -51,7 +51,7 @@ defectIds.forEach(defectId => {
             labels: labels
           }
         }
-      }, function(error, updatedIssue) {
+      }), function(error, updatedIssue) {
         if (error) {
           console.error(error);
         }
