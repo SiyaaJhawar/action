@@ -26,7 +26,9 @@ const defectIds = commentTexts.flatMap(text => {
   return Array.from(matches, match => [match[1], match[2]]);
 });
 
-const outputString = defectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
+const filteredDefectIds = defectIds.filter(([prefix, suffix]) => prefix && suffix);
+
+const outputString = filteredDefectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
 
 console.log(outputString);
 
