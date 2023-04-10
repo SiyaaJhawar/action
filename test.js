@@ -20,10 +20,7 @@ fetch(url, {
     console.log(data);
   const commentTexts = data.map(comment => comment.body);
  const defectRegex = /([A-Z0-9]{3})-(?=C)\w+/g
-
-
-
-const defectIds = commentTexts.flatMap(text => {
+ const defectIds = commentTexts.flatMap(text => {
   const matches = [];
   let match;
   while ((match = defectRegex.exec(text))) {
