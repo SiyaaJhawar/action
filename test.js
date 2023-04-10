@@ -11,10 +11,9 @@ fetch(url, {
     "Accept": "application/vnd.github.v3+json"
   }
 })
-  .then(response => response.json())
+ .then(response => response.json())
   .then(data => {
-    console.log(data);
-    const commentTexts = data.map(comment => comment.body);
+ const commentTexts = data.map(comment => comment.body);
     const defectRegex = /([A-Z0-9]{3})-(\w+)/g;
     const defectIds = commentTexts.flatMap(text => {
       const matches = [];
@@ -24,6 +23,5 @@ fetch(url, {
       }
       return matches;
     });
-    console.log(defectIds);
-  })
-  .catch(error => console.error(error));
+    const output = defectIds.map(id => id.join('-')).join(',');
+    console.log(output);
