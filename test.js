@@ -31,6 +31,7 @@ const defectIds = commentTexts.flatMap(text => {
 const outputString = defectIds.map(([prefix, suffix]) => `${prefix}-${suffix}`).join(", ");
 
 
+console.log(outputString);
 
   })
   .catch(error => console.error(error));
