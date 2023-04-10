@@ -20,6 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+      - run: npm install jira connector
 
       - name: Run script
         run: node addlabel.js
