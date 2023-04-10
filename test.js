@@ -22,6 +22,10 @@ fetch(url, {
   const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
   const defectIds = commentTexts.flatMap(text => text.match(defectRegex));
   console.log(defectIds);
+  const commaSeparatedIds = defectIds.join(', ');
+
+console.log(commaSeparatedIds);
+
 
   })
   .catch(error => console.error(error));
