@@ -1,7 +1,7 @@
 const owner = "SiyaaJhawar";
 const repo = "action";
 const commit_sha = "b63d854b9c2d60ba843e7da1106c8076fe203704";
-const url = `https://api.github.com/repos/${owner}/${repo}/commits/${commit_sha}/comments`;
+const url = `https://api.github.com/repos/SiyaaJhawar/action/commits/b63d854b9c2d60ba843e7da1106c8076fe203704/comments`;
 const username = process.env.GITHUB_USERNAME;
 const password = process.env.GITHUB_API_TOKEN;
 
