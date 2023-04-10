@@ -44,17 +44,20 @@ defectIds.forEach(defectId => {
     if (!labels.includes('int_deploy')) {
       labels.push('int_deploy');
 
-     jira.issue.editIssue({
-  issueKey: issue.key,
-  issue: {
-    fields: {
-      labels: labels
+      jira.issue.editIssue({
+        issueKey: issue.key,
+        issue: {
+          fields: {
+            labels: labels
+          }
+        }
+      }, function(error, updatedIssue) {
+        if (error) {
+          console.error(error);
+        } else {
+          console.log(`Label "int_deploy" added to issue ${updatedIssue.key}`);
+        }
+      });
     }
-  }
-}, function(error, updatedIssue) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log(`Label "int_deploy" added to issue ${updatedIssue.key}`);
-  }
+  });
 });
