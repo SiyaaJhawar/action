@@ -1,4 +1,5 @@
-const JiraApi = require('jira-connector');
+import JiraApi from 'jira-connector';
+
 
 const defectRegex = /([A-Z]{3})-\d+/g;
 const jiraUrl = 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues';
