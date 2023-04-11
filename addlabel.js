@@ -25,14 +25,20 @@ async function compareCommitCommentWithJiraIssue() {
     for (const defectId of defectIds) {
         const issueResponse = await axios.get(`${jiraUrl}/issue/${defectId}`, {
          headers: {
-        "Authorization": `Basic ${btoa(`${jiraUsername}:${jiraPassword}`)}`,
-
+         "Authorization": `Basic ${btoa(`${jiraUsername}:${jiraPassword}`)}`,
+          "Accept": "application/json"
       }
       });
       if (issueResponse.data.key === defectId) {
-        const labelResponse = await axios.get(`${jiraUrl}/issue/${defectId}/labels`, { labels: ['int_deploy'] }, {
-          "Authorization": `Basic ${btoa(`${jiraUsername}:${jiraPassword}`)}`,
-        });
+        const labelResponse = await axios.post(`${jiraUrl}/issue/${defectId}/labels`, { 
+  labels: ['int_deploy']
+}, {
+  headers: {
+    "Authorization": `Basic ${btoa(`${jiraUsername}:${jiraPassword}`)}`,
+    "Content-Type": "application/json"
+  }
+});
+
         console.log(`Label added to Jira issue ${defectId}`);
       }
     }
