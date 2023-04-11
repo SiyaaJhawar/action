@@ -2,7 +2,7 @@ import JiraApi from 'jira-connector';
 
 const defectRegex = new RegExp("([A-Z]{2,3})-\\d+");
 
-const jiraUrl = "https://swgup.atlassian.net";
+const jiraUrl = "https://swgup.atlassian.net/rest/api/2/search/?filter=allissues";
 const jiraAuth = {
   username: process.env.JIRA_USERNAME,
   password: process.env.JIRA_API_TOKEN
