@@ -23,48 +23,43 @@ const jira = new JiraApi({
   basic_auth: jiraAuth
 });
 
-const pageSize = 50;
-const totalPages = Math.ceil(defectIds.length / pageSize);
-
-for (let page = 0; page < totalPages; page++) {
-  const startIndex = page * pageSize;
-  const endIndex = Math.min((page + 1) * pageSize, defectIds.length);
-  const batch = defectIds.slice(startIndex, endIndex);
-
-  batch.forEach(defectId => {
-    jira.search.search({
+async function updateIssue(defectId) {
+  try {
+    const searchResult = await jira.search.search({
       jql: `key=${defectId[0]}-${defectId[1]} AND labels != int_deploy`,
       fields: ['labels']
-    }, function(error, searchResult) {
-      if (error) {
-        console.error(error);
-        return;
-      }
-
-      const issues = searchResult.issues;
-      if (issues.length === 0) {
-        console.log(`Issue ${defectId[0]}-${defectId[1]} not found`);
-        return;
-      }
-
-      const issue = issues[0];
-      const labels = issue.fields.labels;
-      labels.push('int_deploy');
-
-      jira.issue.editIssue({
-        issueKey: issue.key,
-        issue: {
-          fields: {
-            labels: labels
-          }
-        }
-      }, function(error, updatedIssue) {
-        if (error) {
-          console.error(error);
-        } else {
-          console.log(`Label "int_deploy" added to issue ${updatedIssue.key}`);
-        }
-      });
     });
-  });
+    
+    const issues = searchResult.issues;
+    if (issues.length === 0) {
+      console.log(`Issue ${defectId[0]}-${defectId[1]} not found`);
+      return;
+    }
+
+    const issue = issues[0];
+    const labels = issue.fields.labels;
+    labels.push('int_deploy');
+
+    const updatedIssue = await jira.issue.editIssue({
+      issueKey: issue.key,
+      issue: {
+        fields: {
+          labels: labels
+        }
+      }
+    });
+
+    console.log(`Label "int_deploy" added to issue ${updatedIssue.key}`);
+  } catch (error) {
+    console.error(error);
+  }
 }
+
+async function processDefectIds(defectIds) {
+  for (const defectId of defectIds) {
+    await updateIssue(defectId);
+  }
+}
+
+processDefectIds(defectIds);
+
