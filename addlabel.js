@@ -1,15 +1,12 @@
 import JiraApi from 'jira-connector';
 
-
 const defectRegex = new RegExp("([A-Z]{2,3})-\\d+");
 
-
-const jiraUrl = "https://swgup.atlassian.net/rest/api/2/search?filter=allissues";
+const jiraUrl = "https://swgup.atlassian.net";
 const jiraAuth = {
   username: process.env.JIRA_USERNAME,
   password: process.env.JIRA_API_TOKEN
 };
-
 
 const commentTexts = ['WFL-1105', 'WFL-101', 'SWT-1', 'SWT-2', 'WFL-1015', 'WFL-1010', 'WFL-1001', 'WFL-1002', 'CLDP-1003', 'WFL-1001', 'WFL-1101'];
 const defectIds = commentTexts.flatMap(text => {
@@ -21,14 +18,14 @@ const defectIds = commentTexts.flatMap(text => {
   return matches;
 });
 
-defectIds.forEach(defectId => {
-  const jira = new JiraApi({
-    host: jiraUrl,
-    basic_auth: jiraAuth
-  });
+const jira = new JiraApi({
+  host: jiraUrl,
+  basic_auth: jiraAuth
+});
 
+defectIds.forEach(defectId => {
   jira.search.search({
-    jql: `key=${defectId[0]}-${defectId[1]}`,
+    jql: `key=${defectId[0]}-${defectId[1]} AND labels != int_deploy`,
     fields: ['labels']
   }, function(error, searchResult) {
     if (error) {
@@ -44,23 +41,21 @@ defectIds.forEach(defectId => {
 
     const issue = issues[0];
     const labels = issue.fields.labels;
-    if (!labels.includes('int_deploy')) {
-      labels.push('int_deploy');
+    labels.push('int_deploy');
 
-      jira.issue.editIssue({
-        issueKey: issue.key,
-        issue: {
-          fields: {
-            labels: labels
-          }
+    jira.issue.editIssue({
+      issueKey: issue.key,
+      issue: {
+        fields: {
+          labels: labels
         }
-      }, function(error, updatedIssue) {
-        if (error) {
-          console.error(error);
-        } else {
-          console.log(`Label "int_deploy" added to issue ${updatedIssue.key}`);
-        }
-      });
-    }
+      }
+    }, function(error, updatedIssue) {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log(`Label "int_deploy" added to issue ${updatedIssue.key}`);
+      }
+    });
   });
 });
