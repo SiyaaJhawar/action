@@ -39,17 +39,20 @@ async function addLabelToMatchingJiraIssue(defectId) {
 async function compareCommitCommentWithJiraIssue() {
   try {
     const commitsResponse = await axios.get(githubUrl, {
-      "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
-    "Accept": "application/vnd.github.v3+json" 
+      headers: { Authorization: `token ${githubToken}` }
     });
-    for (const commit of commitsResponse.data) {
-      const message = commit.commit.message;
-      const defectIds = message.match(defectRegex);
-      if (defectIds) {
-        for (const defectId of defectIds) {
-          await addLabelToMatchingJiraIssue(defectId);
+    if (commitsResponse.data.length) {  // Add a check to ensure commitsResponse.data is not empty
+      for (const commit of commitsResponse.data) {
+        const message = commit.commit.message;
+        const defectIds = message.match(defectRegex);
+        if (defectIds) {
+          for (const defectId of defectIds) {
+            await addLabelToMatchingJiraIssue(defectId);
+          }
         }
       }
+    } else {
+      console.log('No commits found.');
     }
   } catch (err) {
     console.error('Failed to compare GitHub commit comments with Jira issues', err);
