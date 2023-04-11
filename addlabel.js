@@ -43,7 +43,7 @@ async function compareCommitCommentWithJiraIssue() {
     "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
     "Accept": "application/vnd.github.v3+json"
     });
-    if (commitsResponse.data.length) {  // Add a check to ensure commitsResponse.data is not empty
+    if (commitsResponse && commitsResponse.data && commitsResponse.data.length > 0) {
       for (const commit of commitsResponse.data) {
         const message = commit.commit.message;
         const defectIds = message.match(defectRegex);
@@ -53,8 +53,6 @@ async function compareCommitCommentWithJiraIssue() {
           }
         }
       }
-    } else {
-      console.log('No commits found.');
     }
   } catch (err) {
     console.error('Failed to compare GitHub commit comments with Jira issues', err);
