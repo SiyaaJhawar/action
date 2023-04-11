@@ -20,12 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-      - run: npm install jira connector
-      - run: npm install --save jira-connector
+     
 
 
       - name: Run script
-        run: NODE_OPTIONS=--max-old-space-size=2048 node addlabel.js
+        run: node addlabel.js
 
         env:
           JIRA_URL: ${{ secrets.JIRA_URL }}
