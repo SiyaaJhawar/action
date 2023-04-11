@@ -1,9 +1,9 @@
 const axios = require('axios');
 const jiraUrl = 'https://swgup.atlassian.net/rest/api/2/search/?filter=allissues';
 const githubUrl = 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments';
-const jiraUsername = 'your_jira_username';
-const jiraPassword = 'your_jira_password';
-const githubToken = 'your_github_token';
+const jiraUsername = process.env.JIRA_USERNAME;
+const jiraPassword = process.env.JIRA_API_TOKEN;
+const githubToken = process.env.GITHUB_TOKEN;
 const defectRegex = /DEFECT-\d+/g;
 
 async function addLabelToMatchingJiraIssue(defectId) {
