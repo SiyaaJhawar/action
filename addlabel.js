@@ -10,56 +10,26 @@ const password = process.env.GITHUB_API_TOKEN;
 
 const defectRegex = /DEFECT-\d+/g;
 
-async function addLabelToMatchingJiraIssue(defectId) {
-  try {
-    const issueResponse = await axios.get(`${jiraUrl}/${defectId}`, {
-      auth: { username: jiraUsername, password: jiraPassword }
-    });
-    if (issueResponse.data.key === defectId) {
-      const labelResponse = await axios.post(`${jiraUrl}/${defectId}/labels`, { labels: ['matched'] }, {
-        auth: { username: jiraUsername, password: jiraPassword }
-      });
-      console.log(`Label added to Jira issue ${defectId}`);
-
-      // Check if the defect ID matches with the commit comment defect ID
-      const commitCommentDefectIds = commit.commit.message.match(defectRegex);
-      if (commitCommentDefectIds && commitCommentDefectIds.includes(defectId)) {
-        const intDeployLabelResponse = await axios.post(`${jiraUrl}/${defectId}/labels`, { labels: ['int_deploy'] }, {
-          auth: { username: jiraUsername, password: jiraPassword }
-        });
-        console.log(`'int_deploy' label added to Jira issue ${defectId}`);
-      }
-    }
-  } catch (err) {
-    console.error(`Failed to add label to Jira issue ${defectId}`, err);
-  }
-}
-
-
 async function compareCommitCommentWithJiraIssue() {
   try {
     const commitsResponse = await axios.get(githubUrl, {
-      
-    "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
+     "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
     "Accept": "application/vnd.github.v3+json"
     });
-   
-    if (!commitsResponse.data.length) {
-      console.log('No commits found');
-      return;
-    }
-
     for (const commit of commitsResponse.data) {
       const message = commit.commit.message;
-      if (!message) {
-        console.log(`No message found in commit ${commit.sha}`);
-        continue;
-      }
-
       const defectIds = message.match(defectRegex);
       if (defectIds) {
         for (const defectId of defectIds) {
-          await addLabelToMatchingJiraIssue(defectId);
+          const issueResponse = await axios.get(`${jiraUrl}/${defectId}`, {
+            auth: { username: jiraUsername, password: jiraPassword }
+          });
+          if (issueResponse.data.key === defectId) {
+            const labelResponse = await axios.post(`${jiraUrl}/${defectId}/labels`, { labels: ['int_deploy'] }, {
+              auth: { username: jiraUsername, password: jiraPassword }
+            });
+            console.log(`Label added to Jira issue ${defectId}`);
+          }
         }
       }
     }
@@ -67,11 +37,3 @@ async function compareCommitCommentWithJiraIssue() {
     console.error('Failed to compare GitHub commit comments with Jira issues', err);
   }
 }
-
-
-
-
-
-
-
-compareCommitCommentWithJiraIssue();
