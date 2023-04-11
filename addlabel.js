@@ -26,7 +26,7 @@ async function compareCommitCommentWithJiraIssue() {
         const issueResponse = await axios.get(`${jiraUrl}/issue/${defectId}`, {
          headers: {
         "Authorization": `Basic ${btoa(`${jiraUsername}:${jiraPassword}`)}`,
-        "Accept": "application/vnd.github.v3+json"
+
       }
       });
       if (issueResponse.data.key === defectId) {
