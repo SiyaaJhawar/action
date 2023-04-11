@@ -12,10 +12,13 @@ const defectRegex = /DEFECT-\d+/g;
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-    const commitsResponse = await axios.get(githubUrl, {
-     "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
+   const commitsResponse = await axios.get(githubUrl, {
+  headers: {
+    "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
     "Accept": "application/vnd.github.v3+json"
-    });
+  }
+});
+
     for (const commit of commitsResponse.data) {
       const message = commit.commit.message;
       const defectIds = message.match(defectRegex);
