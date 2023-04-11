@@ -25,7 +25,8 @@ jobs:
 
 
       - name: Run script
-        run: node addlabel.js
+        run: NODE_OPTIONS=--max-old-space-size=2048 node addlabel.js
+
         env:
           JIRA_URL: ${{ secrets.JIRA_URL }}
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
