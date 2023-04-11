@@ -29,6 +29,7 @@ async function compareCommitCommentWithJiraIssue() {
           "Accept": "application/json"
       }
       });
+      console.log(issueResponse.data);
       if (issueResponse.data.key === defectId) {
         const labelResponse = await axios.post(`${jiraUrl}/issue/${defectId}/labels`, { 
   labels: ['int_deploy']
