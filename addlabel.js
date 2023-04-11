@@ -39,7 +39,9 @@ async function addLabelToMatchingJiraIssue(defectId) {
 async function compareCommitCommentWithJiraIssue() {
   try {
     const commitsResponse = await axios.get(githubUrl, {
-      headers: { Authorization: `token ${password}` }
+      
+    "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
+    "Accept": "application/vnd.github.v3+json"
     });
     if (commitsResponse.data.length) {  // Add a check to ensure commitsResponse.data is not empty
       for (const commit of commitsResponse.data) {
