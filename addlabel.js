@@ -3,7 +3,9 @@ const jiraUrl = 'https://swgup.atlassian.net/rest/api/2/search/?filter=allissues
 const githubUrl = 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments';
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraPassword = process.env.JIRA_API_TOKEN;
-const githubToken = process.env.GITHUB_API_TOKEN;
+const username = process.env.GITHUB_USERNAME;
+const password = process.env.GITHUB_API_TOKEN;
+
 const defectRegex = /DEFECT-\d+/g;
 
 async function addLabelToMatchingJiraIssue(defectId) {
@@ -35,7 +37,8 @@ async function addLabelToMatchingJiraIssue(defectId) {
 async function compareCommitCommentWithJiraIssue() {
   try {
     const commitsResponse = await axios.get(githubUrl, {
-      headers: { Authorization: `token ${githubToken}` }
+      "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
+    "Accept": "application/vnd.github.v3+json" }
     });
     for (const commit of commitsResponse.data) {
       const message = commit.commit.message;
