@@ -1,65 +1,44 @@
-import JiraApi from 'jira-connector';
+const axios = require('axios');
+const jiraUrl = 'https://swgup.atlassian.net/rest/api/2/search/?filter=allissues';
+const githubUrl = 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments';
+const jiraUsername = 'your_jira_username';
+const jiraPassword = 'your_jira_password';
+const githubToken = 'your_github_token';
+const defectRegex = /DEFECT-\d+/g;
 
-const defectRegex = new RegExp("([A-Z]{2,3})-\\d+");
-
-const jiraUrl = "https://swgup.atlassian.net/rest/api/2/search/?filter=allissues";
-const jiraAuth = {
-  username: process.env.JIRA_USERNAME,
-  password: process.env.JIRA_API_TOKEN
-};
-
-const commentTexts = ['WFL-1105', 'WFL-101', 'SWT-1', 'SWT-2', 'WFL-1015', 'WFL-1010', 'WFL-1001', 'WFL-1002', 'CLDP-1003', 'WFL-1001', 'WFL-1101'];
-const defectIds = commentTexts.flatMap(text => {
-  const matches = [];
-  let match;
-  while ((match = defectRegex.exec(text))) {
-    matches.push([match[1], match[2]]);
-  }
-  return matches;
-});
-
-const jira = new JiraApi({
-  host: jiraUrl,
-  basic_auth: jiraAuth
-});
-
-async function updateIssue(defectId) {
+async function addLabelToMatchingJiraIssue(defectId) {
   try {
-    const searchResult = await jira.search.search({
-      jql: `key=${defectId[0]}-${defectId[1]} AND labels != int_deploy`,
-      fields: ['labels']
+    const issueResponse = await axios.get(`${jiraUrl}/${defectId}`, {
+      auth: { username: jiraUsername, password: jiraPassword }
     });
-    
-    const issues = searchResult.issues;
-    if (issues.length === 0) {
-      console.log(`Issue ${defectId[0]}-${defectId[1]} not found`);
-      return;
+    if (issueResponse.data.key === defectId) {
+      const labelResponse = await axios.post(`${jiraUrl}/${defectId}/labels`, { labels: ['matched'] }, {
+        auth: { username: jiraUsername, password: jiraPassword }
+      });
+      console.log(`Label added to Jira issue ${defectId}`);
     }
+  } catch (err) {
+    console.error(`Failed to add label to Jira issue ${defectId}`, err);
+  }
+}
 
-    const issue = issues[0];
-    const labels = issue.fields.labels;
-    labels.push('int_deploy');
-
-    const updatedIssue = await jira.issue.editIssue({
-      issueKey: issue.key,
-      issue: {
-        fields: {
-          labels: labels
+async function compareCommitCommentWithJiraIssue() {
+  try {
+    const commitsResponse = await axios.get(githubUrl, {
+      headers: { Authorization: `token ${githubToken}` }
+    });
+    for (const commit of commitsResponse.data) {
+      const message = commit.commit.message;
+      const defectIds = message.match(defectRegex);
+      if (defectIds) {
+        for (const defectId of defectIds) {
+          await addLabelToMatchingJiraIssue(defectId);
         }
       }
-    });
-
-    console.log(`Label "int_deploy" added to issue ${updatedIssue.key}`);
-  } catch (error) {
-    console.error(error);
+    }
+  } catch (err) {
+    console.error('Failed to compare GitHub commit comments with Jira issues', err);
   }
 }
 
-async function processDefectIds(defectIds) {
-  for (const defectId of defectIds) {
-    await updateIssue(defectId);
-  }
-}
-
-processDefectIds(defectIds);
-
+compareCommitCommentWithJiraIssue();
