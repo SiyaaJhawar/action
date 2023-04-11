@@ -31,7 +31,7 @@ async function compareCommitCommentWithJiraIssue() {
       });
       if (issueResponse.data.key === defectId) {
         const labelResponse = await axios.get(`${jiraUrl}/issue/${defectId}/labels`, { labels: ['int_deploy'] }, {
-          auth: { username: jiraUsername, password: jiraPassword }
+          "Authorization": `Basic ${btoa(`${jiraUsername}:${jiraPassword}`)}`,
         });
         console.log(`Label added to Jira issue ${defectId}`);
       }
