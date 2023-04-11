@@ -18,26 +18,19 @@ async function compareCommitCommentWithJiraIssue() {
         "Accept": "application/vnd.github.v3+json"
       }
     });
+    const commentTexts = commitsResponse.data.map(comment => comment.body);
+    const defectIds = commentTexts.flatMap(text => text.match(defectRegex));
+    console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
 
-    for (const commit of commitsResponse.data) {
-      if (!commit.commit || !commit.commit.message) {
-        continue; // Skip this commit if it has no message
-      }
-
-      const message = commit.commit.message;
-      const defectIds = message.match(defectRegex);
-      if (defectIds) {
-        for (const defectId of defectIds) {
-          const issueResponse = await axios.get(`${jiraUrl}/${defectId}`, {
-            auth: { username: jiraUsername, password: jiraPassword }
-          });
-          if (issueResponse.data.key === defectId) {
-            const labelResponse = await axios.post(`${jiraUrl}/${defectId}/labels`, { labels: ['int_deploy'] }, {
-              auth: { username: jiraUsername, password: jiraPassword }
-            });
-            console.log(`Label added to Jira issue ${defectId}`);
-          }
-        }
+    for (const defectId of defectIds) {
+      const issueResponse = await axios.get(`${jiraUrl}/issue/${defectId}`, {
+        auth: { username: jiraUsername, password: jiraPassword }
+      });
+      if (issueResponse.data.key === defectId) {
+        const labelResponse = await axios.post(`${jiraUrl}/issue/${defectId}/labels`, { labels: ['int_deploy'] }, {
+          auth: { username: jiraUsername, password: jiraPassword }
+        });
+        console.log(`Label added to Jira issue ${defectId}`);
       }
     }
   } catch (err) {
@@ -46,8 +39,6 @@ async function compareCommitCommentWithJiraIssue() {
 }
 
 compareCommitCommentWithJiraIssue();
-
-
 
 
 
