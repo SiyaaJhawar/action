@@ -15,7 +15,7 @@ async function compareCommitCommentWithJiraIssue() {
     const commitsResponse = await axios.get(githubUrl, {
       headers: {
         "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
-        "Accept": "application/vnd.github.v3+json"
+  
       }
     });
     const commentTexts = commitsResponse.data.map(comment => comment.body);
