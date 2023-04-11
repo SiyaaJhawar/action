@@ -16,11 +16,21 @@ async function addLabelToMatchingJiraIssue(defectId) {
         auth: { username: jiraUsername, password: jiraPassword }
       });
       console.log(`Label added to Jira issue ${defectId}`);
+
+      // Check if the defect ID matches with the commit comment defect ID
+      const commitCommentDefectIds = commit.commit.message.match(defectRegex);
+      if (commitCommentDefectIds && commitCommentDefectIds.includes(defectId)) {
+        const intDeployLabelResponse = await axios.post(`${jiraUrl}/${defectId}/labels`, { labels: ['int_deploy'] }, {
+          auth: { username: jiraUsername, password: jiraPassword }
+        });
+        console.log(`'int_deploy' label added to Jira issue ${defectId}`);
+      }
     }
   } catch (err) {
     console.error(`Failed to add label to Jira issue ${defectId}`, err);
   }
 }
+
 
 async function compareCommitCommentWithJiraIssue() {
   try {
