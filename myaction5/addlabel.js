@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import path from 'path';
 import { getInput } from '@actions/core';
 
-const defectIdPath = path.join(process.cwd(), 'action4', 'defectid.js');
+const defectIdPath = path.join(process.cwd(), 'action4', 'defectid');
 
 
 
