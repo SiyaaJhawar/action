@@ -1,0 +1,7 @@
+name: 'My second action'
+description: 'Does something else'
+author: 'Siyaa Jhawar'
+
+runs:
+  using: 'node12'
+  main: 'addlabel.js'
