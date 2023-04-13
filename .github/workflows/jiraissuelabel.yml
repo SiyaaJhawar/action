@@ -15,18 +15,14 @@ jobs:
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
-
-      - name: Install dependencies
-        run: npm install
-      -  run: npm install btoa
+      -  uses: ./myaction5
+       
+      
 
      
 
 
-      - name: Run script
-        run: node addlabel.js
+    
 
         env:
           JIRA_URL: ${{ secrets.JIRA_URL }}
