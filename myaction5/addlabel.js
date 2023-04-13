@@ -1,7 +1,7 @@
-import axios from 'axios';
+
 import fetch from 'node-fetch';
 import * as core from '@actions/core';
-import * as exec from '@actions/exec';
+import * as github from '@actions/github';
 
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
