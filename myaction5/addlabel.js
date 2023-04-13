@@ -1,9 +1,8 @@
-
 import axios from 'axios';
 import fetch from 'node-fetch';
 import path from 'path';
 import { getInput } from '@actions/core';
-import { getDefectIds } from path.join(process.cwd(), defectIdPath);
+import { getDefectIds } from './defectIdPath';
 
 
 
@@ -17,11 +16,12 @@ const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 
 async function compareCommitCommentWithJiraIssue() {
   try {
- const defectIdPath = getInput('defect-id-path');
-const defectIds = await getDefectIds();
+  const defectIdPath = getInput('defect-id-path');
+    const defectIds = await getDefectIds();
     console.log(`Found the following defect IDs in action4 module: ${defectIds}`);
+
     
-    console.log(`Found the following defect IDs in action4 module: ${defectIds}`);
+  
     
  
 
