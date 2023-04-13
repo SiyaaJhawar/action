@@ -10,7 +10,8 @@ var apiToken = process.env.JIRA_API_TOKEN;
 console.log(`Username: ${username}`);
 console.log(`API Token: ${apiToken}`);
 xhr.open("GET", "https://swgup.atlassian.net/rest/api/3/search?filter=allissues", true);
-xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + apiToken));
+xhr.setRequestHeader('Authorization', 'Basic ' + Buffer.from(username + ':' + apiToken).toString('base64'));
+
 xhr.send();
  
 xhr.onreadystatechange = function () {
