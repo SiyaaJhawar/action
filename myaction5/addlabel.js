@@ -12,11 +12,15 @@ const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-    // Call myaction4 and retrieve the data
-    const { data } = await github.actions.getWorkflowRun({
+    const runId = core.getInput('run_id');
+    // Create a new GitHub API client with authentication
+    const octokit = github.getOctokit(core.getInput('GITHUB_API_TOKEN'));
+
+    // Call the GitHub API to get the workflow run details
+    const { data } = await octokit.actions.getWorkflowRun({
       owner: 'SiyaaJhawar',
       repo: 'action',
-      run_id: '721046923'
+      run_id: runId,
      
     });
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
