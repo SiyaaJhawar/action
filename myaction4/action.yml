@@ -1,7 +1,15 @@
-name: 'My second action'
-description: 'Does something else'
-author: 'Siyaa Jhawar'
+name: Extract Jira Issue IDs from Commit Comment
+description: Extracts Jira issue IDs from the commit comment associated with a specific SHA.
+
+inputs:
+  commit-sha:
+    description: 'The SHA of the commit to extract Jira issue IDs from.'
+    required: true
+ 
+outputs:
+  jira-issue-ids:
+    description: 'A comma-separated list of Jira issue IDs found in the commit comment.'
 
 runs:
   using: 'node12'
-  main: 'test.js'
+  
