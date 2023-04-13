@@ -17,7 +17,7 @@ const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-  const { getDefectIds } = await import(defectIdPath);
+ const { getDefectIds } = await import(`${defectIdPath}.js`);
 
     const defectIds = await getDefectIds();
     console.log(`Found the following defect IDs in action4 module: ${defectIds}`);
