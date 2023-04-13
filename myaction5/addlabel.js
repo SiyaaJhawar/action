@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import path from 'path';
 import { getInput } from '@actions/core';
 
-const { getDefectIds } = await import(`${defectIdPath}.js`);
+import { getDefectIds } from `${defectIdPath}.js`;
 
 
 
