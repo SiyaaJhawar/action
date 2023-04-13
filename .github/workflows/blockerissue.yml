@@ -10,6 +10,7 @@ jobs:
     steps:
       - name: Get JIRA Blocker List
         uses: actions/checkout@v2
+      - uses: ./Myaction3
         with:
           ref: main
     
@@ -19,7 +20,8 @@ jobs:
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
        
-        run: node jira.js 
+      
+       
 
      
      
