@@ -12,7 +12,7 @@ jobs:
       - name: Get JIRA Blocker List
         uses: actions/checkout@v2
      
-      - uses: ./jirablockerlist
+      - uses: ./action3
         env:
           
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
