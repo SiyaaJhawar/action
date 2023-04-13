@@ -16,3 +16,6 @@ outputs:
   blocker-issues:
     description: 'A list of Jira issues with the "Blocker" priority'
     
+runs:
+  using: 'node12'
+  main: 'jira.js'
