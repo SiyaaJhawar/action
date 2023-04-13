@@ -24,6 +24,7 @@ async function compareCommitCommentWithJiraIssue() {
  catch (error) {
   console.error('Error running action:', error);
 }
+}
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
     console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
