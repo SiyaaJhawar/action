@@ -12,4 +12,5 @@ outputs:
 
 runs:
   using: 'node12'
+  main: 'defectid.js'
   
