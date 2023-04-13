@@ -19,6 +19,9 @@ jobs:
         
      
        
-      - run: node test.js
+
+     
+      - uses: ./myaction4
+
        
        
