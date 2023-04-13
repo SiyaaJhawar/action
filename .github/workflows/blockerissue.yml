@@ -11,8 +11,7 @@ jobs:
       - name: Get JIRA Blocker List
         uses: actions/checkout@v2
       - uses: ./Myaction3
-        with:
-          ref: main
+       
     
       - name: Print environment variables
         
