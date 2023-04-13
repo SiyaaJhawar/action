@@ -3,6 +3,8 @@ import axios from 'axios';
 import fetch from 'node-fetch';
 import path from 'path';
 import { getInput } from '@actions/core';
+import { getDefectIds } from path.join(process.cwd(), defectIdPath);
+
 
 
 const githubUrl = 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments';
@@ -16,7 +18,9 @@ const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 async function compareCommitCommentWithJiraIssue() {
   try {
  const defectIdPath = getInput('defect-id-path');
-const { getDefectIds } = require(path.join(process.cwd(), defectIdPath));
+const defectIds = await getDefectIds();
+    console.log(`Found the following defect IDs in action4 module: ${defectIds}`);
+    
     console.log(`Found the following defect IDs in action4 module: ${defectIds}`);
     
  
