@@ -17,7 +17,7 @@ async function compareCommitCommentWithJiraIssue() {
   repo: 'action',
   run_id: '721046923',
   auth: `token ${process.env.GITHUB_TOKEN}`
-});
+
 
     });
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
