@@ -4,11 +4,11 @@ import { XMLHttpRequest } from "xmlhttprequest";
 
  
 var xhr = new XMLHttpRequest();
-var username = process.env.JIRA_USERNAME;
-var apiToken = process.env.JIRA_API_TOKEN;
+var jiraUsername = process.env.JIRA_USERNAME;
+var jiraapiToken = process.env.JIRA_API_TOKEN;
 
-console.log(`Username: ${username}`);
-console.log(`API Token: ${apiToken}`);
+console.log(`Username: ${jiraUsername}`);
+console.log(`APItoken: ${jiraapiToken}`);
 xhr.open("GET", "https://swgup.atlassian.net/rest/api/3/search?filter=allissues", true);
 xhr.setRequestHeader('Authorization', 'Basic ' + Buffer.from(username + ':' + apiToken).toString('base64'));
 
