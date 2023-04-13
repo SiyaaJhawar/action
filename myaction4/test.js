@@ -9,11 +9,12 @@ const url =  `https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe708
 const username = process.env.GITHUB_USERNAME;
                                             
 const password = process.env.GITHUB_API_TOKEN;
+const encodedCredentials = Buffer.from(`${username}:${password}`).toString('base64');
 
 fetch(url, {
   headers: {
     
-    "Authorization": `Basic ${btoa(`${username}:${password}`)}`,
+ "Authorization": `Basic ${encodedCredentials}`
     "Accept": "application/vnd.github.v3+json"
   }
 
