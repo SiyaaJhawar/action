@@ -1,0 +1,7 @@
+name: 'My action'
+description: 'jira blocker list '
+author: 'Siyaa Jhawar'
+
+runs:
+  using: 'node12'
+  main: 'jira.js'
