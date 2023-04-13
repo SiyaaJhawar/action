@@ -16,7 +16,7 @@ async function compareCommitCommentWithJiraIssue() {
   owner: 'SiyaaJhawar',
   repo: 'action'
 
-});
+
 
      
     });
