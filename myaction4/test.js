@@ -1,3 +1,6 @@
+const fetch = require('node-fetch');
+
+
 const owner = "SiyaaJhawar";
 const repo = "action";
 const commit_sha = "7ba17fe7086423a30485d2949cf32255bc2c479d";
