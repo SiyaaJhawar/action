@@ -10,7 +10,7 @@ console.log(`username: ${JIRAUSERNAME}`);
 console.log(`APItoken: ${JIRAAPITOKEN}`);
 
 xhr.open("GET", "https://swgup.atlassian.net/rest/api/3/search?filter=allissues", true);
-xhr.setRequestHeader('Authorization', 'Basic ' + Buffer.from(Username + ':' + ApiToken).toString('base64'));
+xhr.setRequestHeader('Authorization', 'Basic ' + Buffer.from(JIRAUSERNAME + ':' + JIRAAPITOKEN).toString('base64'));
 
 xhr.send();
  
