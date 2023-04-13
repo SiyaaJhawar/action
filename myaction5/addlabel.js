@@ -3,8 +3,16 @@ import fetch from 'node-fetch';
 import path from 'path';
 import { getInput } from '@actions/core';
 //import { getDefectIds } from './defectIdPath';
-const { getDefectIds } = await import(path.join(process.cwd(), defectIdPath));
+async function main() {
+  try {
+    const { getDefectIds } = await import(path.join(process.cwd(), defectIdPath));
+    // rest of the code
+  } catch (error) {
+    console.error(error);
+  }
+}
 
+main();
 
 
 const githubUrl = 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments';
