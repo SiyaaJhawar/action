@@ -14,7 +14,7 @@ const encodedCredentials = Buffer.from(`${username}:${password}`).toString('base
 fetch(url, {
   headers: {
     
- "Authorization": `Basic ${encodedCredentials}`
+ "Authorization": `Basic ${encodedCredentials}`,
     "Accept": "application/vnd.github.v3+json"
   }
 
