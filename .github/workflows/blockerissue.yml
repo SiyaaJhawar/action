@@ -15,10 +15,11 @@ jobs:
         run: |
           echo "Username: $JIRA_USERNAME"
           echo "API Token: $JIRA_API_TOKEN"
-      - name: Install dependencies
-        run: npm install xhr2
       - name: Get JIRA Blocker List
         uses: actions/checkout@v2
+      - name: Load xhr2 from CDN
+        run: |
+          echo "<script src='https://cdn.jsdelivr.net/npm/xhr2'></script>" >> index.html
       - uses: ./Myaction3
 
 
