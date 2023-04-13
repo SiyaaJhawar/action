@@ -16,7 +16,7 @@ const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-  const actionResult = require('./action/test');
+  const actionResult = require('./myaction4/test.js');
   const { encodedCredentials, commitsResponse } = actionResult;
   // the rest of the code using encodedCredentials and commitsResponse
 
