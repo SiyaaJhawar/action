@@ -12,9 +12,12 @@ const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-    const { data } = await github.actions.getWorkflowRun({
-      owner: 'SiyaaJhawar',
-      repo: 'action',
+   github.actions.getWorkflowRun({
+  owner: 'SiyaaJhawar',
+  repo: 'action'
+
+});
+
      
     });
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
