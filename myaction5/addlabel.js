@@ -85,7 +85,7 @@ const defectIds = await getDefectIds();
   console.error(error);
 }
 
-    
+} 
 compareCommitCommentWithJiraIssue();
 
 
