@@ -13,14 +13,11 @@ jobs:
         uses: actions/checkout@v2
      
       - uses: ./myaction3
-      -  name: Print environment variables
-         env:
+        env:
+          
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-         run: |
-          echo "Username: $JIRA_USERNAME"
-          echo "API Token: $JIRA_API_TOKEN"
-
+          
 
      
      
