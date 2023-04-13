@@ -2,7 +2,7 @@ import axios from 'axios';
 import fetch from 'node-fetch';
 import path from 'path';
 import { getInput } from '@actions/core';
-
+import { getDefectIds } from path.join(process.cwd(), 'action4', 'defectid.js');
 
 const githubUrl = 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments';
 const jiraUsername = process.env.JIRA_USERNAME;
