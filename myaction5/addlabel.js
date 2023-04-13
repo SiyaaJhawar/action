@@ -2,17 +2,6 @@ import axios from 'axios';
 import fetch from 'node-fetch';
 import path from 'path';
 import { getInput } from '@actions/core';
-//import { getDefectIds } from './defectIdPath';
-async function main() {
-  try {
-    const { getDefectIds } = await import(path.join(process.cwd(), defectIdPath));
-    // rest of the code
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-main();
 
 
 const githubUrl = 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments';
@@ -26,7 +15,7 @@ const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 async function compareCommitCommentWithJiraIssue() {
   try {
   const defectIdPath = getInput('defect-id-path');
-    const defectIds = await getDefectIds();
+    const { getDefectIds } = await import(path.join(process.cwd(), defectIdPath));
     console.log(`Found the following defect IDs in action4 module: ${defectIds}`);
 
     
