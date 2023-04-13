@@ -6,7 +6,6 @@ import { XMLHttpRequest } from "xmlhttprequest";
 var xhr = new XMLHttpRequest();
 var Username = process.env.JIRA_USERNAME;
 var ApiToken = process.env.JIRA_API_TOKEN;
-
 console.log(`username: ${Username}`);
 console.log(`APItoken: ${ApiToken}`);
 
