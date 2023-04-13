@@ -5,12 +5,10 @@ import * as github from '@actions/github';
 
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
-const username = process.env.GITHUB_USERNAME;
-const password = process.env.GITHUB_API_TOKEN;
+
 const token = process.env.GITHUB_TOKEN;
 const octokit = github.getOctokit(token);
-console.log(`Username: ${username}`);
-    console.log(`Apitoken: ${password}`);
+
  console.log(`Apitoken: ${token}`);
 
 const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
