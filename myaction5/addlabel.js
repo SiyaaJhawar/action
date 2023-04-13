@@ -20,7 +20,7 @@ async function compareCommitCommentWithJiraIssue() {
   } catch (error) {
     console.error(error);
   }
-}
+
     console.log(`Username: ${jiraUsername}`);
     console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
