@@ -16,14 +16,11 @@ const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-  const { data } = await github.actions.getWorkflowRun({
-  owner: 'SiyaaJhawar',
-  repo: 'action',
-  run_id: '721046923',
-  auth: `token ${process.env.GITHUB_TOKEN}`
+  const actionResult = require('./action/test');
+  const { encodedCredentials, commitsResponse } = actionResult;
+  // the rest of the code using encodedCredentials and commitsResponse
 
-
-    });
+    }
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
     console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
