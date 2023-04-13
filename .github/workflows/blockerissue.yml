@@ -17,10 +17,8 @@ jobs:
           echo "API Token: $JIRA_API_TOKEN"
       - name: Get JIRA Blocker List
         uses: actions/checkout@v2
-      - name: Load xhr2 from CDN
-        run: |
-          echo "<script src='https://cdn.jsdelivr.net/npm/xhr2'></script>" >> index.html
-      - uses: ./Myaction3
+     
+      - uses: ./myaction3
 
 
      
