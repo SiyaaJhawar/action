@@ -16,15 +16,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
       -  uses: ./myaction5
-       
-      
-
-     
-
-
-    
-
-        env:
+         env:
           JIRA_URL: ${{ secrets.JIRA_URL }}
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
           JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
