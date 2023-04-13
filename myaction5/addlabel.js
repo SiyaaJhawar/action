@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import fetch from 'node-fetch';
-const action4 = require('./action4'); 
+import { getDefectIds } from './action4/defectid.js';
 
 const githubUrl = 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments';
 const jiraUsername = process.env.JIRA_USERNAME;
@@ -13,8 +13,10 @@ const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-    const defectIds = await action4.getDefectIds(); // Call the getDefectIds function from the action4 module
-    console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
+     const defectIds = await getDefectIds();
+    console.log(`Found the following defect IDs in action4 module: ${defectIds}`);
+    
+  }
     console.log(`Username: ${jiraUsername}`);
     console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
