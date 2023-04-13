@@ -3,7 +3,8 @@ import fetch from 'node-fetch';
 import path from 'path';
 import { getInput } from '@actions/core';
 
-import { getDefectIds } from defectIdPath + '.js';
+import { getDefectIds } from `${defectIdPath}.js`;
+
 
 
 
