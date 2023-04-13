@@ -2,7 +2,7 @@
 
 
  
-var XMLHttpRequest = require('xhr2');
+
 var username = process.env.JIRA_USERNAME;
 var apiToken = process.env.JIRA_API_TOKEN;
 console.log(`Username: ${username}`);
