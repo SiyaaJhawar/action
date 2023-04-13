@@ -22,12 +22,7 @@ async function compareCommitCommentWithJiraIssue() {
     const defectIds = await getDefectIds();
     console.log(`Found the following defect IDs in action4 module: ${defectIds}`);
     
-    
-  
-    
- 
-
-    console.log(`Username: ${jiraUsername}`);
+     console.log(`Username: ${jiraUsername}`);
     console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
 
