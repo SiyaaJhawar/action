@@ -1,3 +1,5 @@
+import fetch from 'node-fetch'; 
+
 fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
   method: 'GET',
   headers: {
