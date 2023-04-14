@@ -1,8 +1,3 @@
-import fetch from 'node-fetch';
-
-const jiraUsername = process.env.JIRA_USERNAME;
-const jiraapitoken = process.env.JIRA_API_TOKEN;
-
 fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
   method: 'GET',
   headers: {
@@ -17,10 +12,8 @@ fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
   return response.json();
 })
 .then(json => {
-  if (json.issues.length === 0) {
-    console.log("Jira list is empty. Go.");
-  } else {
-    console.log("Jira list is non-empty. No-Go.");
+  if (json.issues.length !== 0) {
+    console.log("Jira list is non-empty.");
 
     // Add code to handle the non-empty list here
     // For example, you can display the Jira issues to the user
@@ -29,7 +22,8 @@ fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
       // Do something with the Jira issues here
     });
     console.log(`There are ${json.issues.length} Jira issues.`);
+  } else {
+    throw new Error("Jira list is empty.");
   }
 })
-.catch(err => console.error(err));
-
+.catch(err => console.error(err.message));
