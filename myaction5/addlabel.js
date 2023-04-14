@@ -4,10 +4,11 @@ import '../action4/defectid.js';
 
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
-
+const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 async function compareCommitCommentWithJiraIssue() {
   try {
     const defectIds = global.defectIds;
+     const defectIds = commentTexts.flatMap(text => text.match(defectRegex));
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
 
     console.log(`Username: ${jiraUsername}`);
@@ -32,7 +33,7 @@ async function compareCommitCommentWithJiraIssue() {
         console.log(`Found the following issue keys: ${issueKeys.join(', ')}`);
 
 
-const defectIds = global.defectIds;
+
  const matchingIssueKeys = issueKeys.filter(issueKey => {
           const regex = new RegExp(`(${defectIds.join('|')})`);
           return regex.test(issueKey);
