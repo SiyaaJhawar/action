@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-window.defectIds = ["DEF1", "DEF2", "DEF3"];
+
 
 
 const owner = "SiyaaJhawar";
