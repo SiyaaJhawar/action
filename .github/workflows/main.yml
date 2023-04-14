@@ -11,7 +11,9 @@ jobs:
       - name: action1
       - uses: actions/checkout@v2
       - uses: SiyaaJhawar/action/action1/action.yml@main
-      
+        with:
+         input1: value1
+         input2: value2
       
       
        
