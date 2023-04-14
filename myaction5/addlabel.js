@@ -9,7 +9,7 @@ const jiraapitoken = process.env.JIRA_API_TOKEN;
 const username = process.env.GITHUB_USERNAME;
 const password = process.env.GITHUB_API_TOKEN;
 
-const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
+
 
 
 
