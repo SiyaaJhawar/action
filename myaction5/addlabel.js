@@ -35,6 +35,7 @@ async function compareCommitCommentWithJiraIssue() {
 
 
  const matchingIssueKeys = issueKeys.filter(issueKey => {
+   const defectIds = global.defectIds;
           const regex = new RegExp(`(${defectIds.join('|')})`);
           return regex.test(issueKey);
         });
