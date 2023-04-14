@@ -13,8 +13,9 @@ import '../action4/defectid.js';
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-  cconst defectIds = globalThis.defectIds;
+  const defectIds = global.defectIds;
 console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
+
 
 
 
