@@ -1,34 +1,16 @@
 import axios from 'axios';
 import fetch from 'node-fetch';
-
 import '../action4/defectid.js';
-
 
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
-const username = process.env.GITHUB_USERNAME;
-const password = process.env.GITHUB_API_TOKEN;
-
-
-
-
-
-// rest of the code that uses defectIds
-
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-  const defectIds = global.defectIds;
-console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
-
-
-
-
-    
+    const defectIds = global.defectIds;
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
- 
 
-   console.log(`Username: ${jiraUsername}`);
+    console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
 
     fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
@@ -41,9 +23,7 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
       }
     })
     .then(response => {
-      console.log(
-        `Response: ${response.status} ${response.statusText}`
-      );
+      console.log(`Response: ${response.status} ${response.statusText}`);
       return response.json(); // Parse the response as JSON
     })
     .then(data => {
@@ -51,44 +31,34 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
         const issueKeys = data.issues.map(issue => issue.key); // Extract the keys of all the issues
         console.log(`Found the following issue keys: ${issueKeys.join(', ')}`);
 
-        
-
-
-const matchingIssueKeys = issueKeys.filter(issueKey => {
-const matchResult = issueKey.match(/[A-Z]+\d+/g);
-  if (!matchResult) {
-    return false;
-  }
-  const issueKeyAlphanumeric = matchResult[0];
-  const matchingDefectId = global.defectIds.find(defectId => {
-    return issueKeyAlphanumeric.includes(defectId.replace("DEF", "WFL-"));
-  });
-  return matchingDefectId !== undefined;
-
+        const issueKeyRegex = /[A-Z]+\-\d+/g; // Generic regex for matching issue keys
+        const matchingIssueKeys = issueKeys.filter(issueKey => {
+          return defectIds.some(defectId => issueKey.match(issueKeyRegex).includes(defectId.replace("DEF", "WFL-")));
         });
+
         console.log(`Found matching issue keys: ${matchingIssueKeys.join(', ')}`);
 
         // Add label to the matching issues
         matchingIssueKeys.forEach(issueKey => {
-      
-         fetch(`https://swgup.atlassian.net/rest/api/2/issue/${issueKey}`, {
-                   method: 'PUT',
-                headers: {
-        'Authorization': `Basic ${Buffer.from(
-          `${jiraUsername}:${jiraapitoken}`
-        ).toString('base64')}`,
-        'Content-Type': 'application/json'
-      },
- body: JSON.stringify({
-    "update": {
-      "labels": [
-        {
-          "add": "int-deploy"
-        }
-      ]
-    }
-  })
-})  .then(response => {
+          fetch(`https://swgup.atlassian.net/rest/api/2/issue/${issueKey}`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `Basic ${Buffer.from(
+                `${jiraUsername}:${jiraapitoken}`
+              ).toString('base64')}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              "update": {
+                "labels": [
+                  {
+                    "add": "int-deploy"
+                  }
+                ]
+              }
+            })
+          })
+          .then(response => {
             console.log(
               `Response: ${response.status} ${response.statusText}`
             );
@@ -113,8 +83,8 @@ const matchResult = issueKey.match(/[A-Z]+\d+/g);
     console.error(error);
   }
 }
-compareCommitCommentWithJiraIssue();
 
+compareCommitCommentWithJiraIssue();
 
 
 
