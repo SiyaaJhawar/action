@@ -1,8 +1,6 @@
-// This code sample uses the 'node-fetch' library:
-// https://www.npmjs.com/package/node-fetch
 const fetch = require('node-fetch');
 
-fetch('https://your-domain.atlassian.net/rest/api/3/issue/{issueIdOrKey}', {
+fetch('', {
   method: 'GET',
   headers: {
     'Authorization': `Basic ${Buffer.from(
@@ -15,7 +13,12 @@ fetch('https://your-domain.atlassian.net/rest/api/3/issue/{issueIdOrKey}', {
     console.log(
       `Response: ${response.status} ${response.statusText}`
     );
-    return response.text();
+    return response.json();
   })
-  .then(text => console.log(text))
+  .then(json => {
+    json.issues.forEach(issue => {
+      console.log(issue.key, issue.fields.summary);
+    });
+  })
   .catch(err => console.error(err));
+
