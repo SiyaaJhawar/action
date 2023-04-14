@@ -4,7 +4,12 @@ import fetch from 'node-fetch';
 import '../action4/defectid.js';
 
 
+const jiraUsername = process.env.JIRA_USERNAME;
+const jiraapitoken = process.env.JIRA_API_TOKEN;
+const username = process.env.GITHUB_USERNAME;
+const password = process.env.GITHUB_API_TOKEN;
 
+const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 
 
 
@@ -22,11 +27,7 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
    
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
 
-    const jiraUsername = 'your_jira_username';
-    const jiraapitoken = 'your_jira_api_token';
-    const defectRegex = new RegExp(`(${defectIds.join('|')})`);
-
-    console.log(`Username: ${jiraUsername}`);
+   console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
 
     fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
@@ -51,31 +52,32 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
 
         // Check if any of the issue keys match a defect ID
         const matchingIssueKeys = issueKeys.filter(issueKey => {
-          return defectRegex.test(issueKey);
+          const regex = new RegExp(`(${defectIds.join('|')})`);
+          return regex.test(issueKey);
         });
         console.log(`Found matching issue keys: ${matchingIssueKeys.join(', ')}`);
 
         // Add label to the matching issues
         matchingIssueKeys.forEach(issueKey => {
-          fetch(`https://swgup.atlassian.net/rest/api/2/issue/${issueKey}`, {
-            method: 'PUT',
-            headers: {
-              'Authorization': `Basic ${Buffer.from(
-                `${jiraUsername}:${jiraapitoken}`
-              ).toString('base64')}`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              "update": {
-                "labels": [
-                  {
-                    "add": "int-deploy"
-                  }
-                ]
-              }
-            })
-          })
-          .then(response => {
+      
+         fetch(`https://swgup.atlassian.net/rest/api/2/issue/${issueKey}`, {
+                   method: 'PUT',
+                headers: {
+        'Authorization': `Basic ${Buffer.from(
+          `${jiraUsername}:${jiraapitoken}`
+        ).toString('base64')}`,
+        'Content-Type': 'application/json'
+      },
+ body: JSON.stringify({
+    "update": {
+      "labels": [
+        {
+          "add": "int-deploy"
+        }
+      ]
+    }
+  })
+})  .then(response => {
             console.log(
               `Response: ${response.status} ${response.statusText}`
             );
@@ -100,8 +102,8 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
     console.error(error);
   }
 }
-
 compareCommitCommentWithJiraIssue();
+
 
 
 
