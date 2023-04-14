@@ -7,7 +7,8 @@ import { defectIds } from '../action4/defectid.js';
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-    const defectIds = defectIds;
+  export const defectIds = ["DEF1", "DEF2", "DEF3"];
+
 
    
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
