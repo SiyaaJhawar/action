@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-global.defectIds = ["DEF-1", "DEF-2", "DEF-3"];
+
 
 
 
@@ -32,6 +32,8 @@ fetch(url, {
   const commaSeparatedIds = defectIds.join(', ');
 
 console.log(commaSeparatedIds);
+ 
+
 
 
   })
