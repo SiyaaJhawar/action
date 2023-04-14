@@ -4,7 +4,7 @@ import '../action4/defectid.js';
 
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
-const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
+
 async function compareCommitCommentWithJiraIssue() {
   try {
     const defectIds = global.defectIds;
@@ -39,6 +39,7 @@ const issueKeyRegex = /[A-Z]{2,3}-\d+/g;
 issueKeys.forEach(issueKey => {
   const issueDefectIds = issueKey.match(issueKeyRegex);
   const defectIds = global.defectIds;
+  console.log(${defectIds});
   for (const defectId of defectIds) {
     if (issueDefectIds.includes(defectId)) {
       matchingIssueKeys.push(issueKey);
