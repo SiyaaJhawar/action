@@ -1,4 +1,6 @@
 import fetch from 'node-fetch'; 
+const jiraUsername = process.env.JIRA_USERNAME;
+const jiraapitoken = process.env.JIRA_API_TOKEN;
 
 fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
   method: 'GET',
