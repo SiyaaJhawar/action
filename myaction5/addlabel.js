@@ -8,7 +8,7 @@ const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 async function compareCommitCommentWithJiraIssue() {
   try {
     const defectIds = global.defectIds;
-     const defectIds = commentTexts.flatMap(text => text.match(defectRegex));
+    
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
 
     console.log(`Username: ${jiraUsername}`);
