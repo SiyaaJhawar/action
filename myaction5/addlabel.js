@@ -55,10 +55,11 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
 
 
 const matchingIssueKeys = issueKeys.filter(issueKey => {
- const defectRegex = new RegExp(`(${defectIds.join('|')})-\\d+`, 'i');
-   return defectRegex.test(issueKey);
-
-
+ const issueKeyAlphanumeric = issueKey.match(/[A-Z]+\d+/g)[0];
+  const matchingDefectId = global.defectIds.find(defectId => {
+    return issueKeyAlphanumeric.includes(defectId.replace("DEF", "WFL-"));
+  });
+  return matchingDefectId !== undefined;
 
         });
         console.log(`Found matching issue keys: ${matchingIssueKeys.join(', ')}`);
