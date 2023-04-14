@@ -24,8 +24,9 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
 
 
 
-   
+    
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
+ const defectRegex = new RegExp(`(${defectIds.join('|')})`);
 
    console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
@@ -52,8 +53,8 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
 
         // Check if any of the issue keys match a defect ID
         const matchingIssueKeys = issueKeys.filter(issueKey => {
-          const regex = new RegExp(`(${defectIds.join('|')})`);
-          return regex.test(issueKey);
+         
+         return defectRegex.test(issueKey);
         });
         console.log(`Found matching issue keys: ${matchingIssueKeys.join(', ')}`);
 
