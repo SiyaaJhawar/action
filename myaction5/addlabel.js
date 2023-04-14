@@ -35,25 +35,28 @@ async function compareCommitCommentWithJiraIssue() {
 
 
 
-const defectIds = global.defectIds;
 const matchingIssueKeys = [];
+const issueKeyRegex = /[A-Z]+-[0-9]+/g;
 
-for (const issueKey of issueKeys) {
+issueKeys.forEach(issueKey => {
+  const issueDefectIds = issueKey.match(issueKeyRegex);
+  const defectIds = global.defectIds;
   for (const defectId of defectIds) {
-    if (issueKey.includes(defectId)) {
+    if (issueDefectIds.includes(defectId)) {
       matchingIssueKeys.push(issueKey);
       break;
     }
   }
-}
+});
 
-console.log(`Found matching issue keys: ${matchingIssueKeys.join(", ")}`);
+console.log(`Found matching issue keys: ${matchingIssueKeys}`);
+
 
 
 
         
 
-        console.log(`Found matching issue keys: ${matchingIssueKeys.join(', ')}`);
+        
 
         // Add label to the matching issues
         matchingIssueKeys.forEach(issueKey => {
