@@ -44,7 +44,7 @@ for (const issueKey of issueKeys) {
     }
   }
 };
-        });
+        
 
         console.log(`Found matching issue keys: ${matchingIssueKeys.join(', ')}`);
 
