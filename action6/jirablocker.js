@@ -1,14 +1,16 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-fetch('', {
-  method: 'GET',
-  headers: {
-    'Authorization': `Basic ${Buffer.from(
-      'email@example.com:<api_token>'
-    ).toString('base64')}`,
-    'Accept': 'application/json'
-  }
-})
+const jiraUsername = process.env.JIRA_USERNAME;
+const jiraapitoken = process.env.JIRA_API_TOKEN;
+fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Basic ${Buffer.from(
+          `${jiraUsername}:${jiraapitoken}`
+        ).toString('base64')}`,
+        'Accept': 'application/json'
+      }
+    })
   .then(response => {
     console.log(
       `Response: ${response.status} ${response.statusText}`
