@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 
+global.defectIds = ["DEF1", "DEF2", "DEF3"];
 
 
 
