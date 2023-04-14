@@ -33,4 +33,3 @@ fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
 })
 .catch(err => console.error(err));
 
-
