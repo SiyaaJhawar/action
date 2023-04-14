@@ -1,13 +1,16 @@
 import axios from 'axios';
 import fetch from 'node-fetch';
-import { defectIds } from '../action4/defectid.js';
+import defectIdsModule from '../action4/defectid.js';
+
+
+
 
 // rest of the code that uses defectIds
 
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-  module.exports.defectIds = ["DEF1", "DEF2", "DEF3"];
+  const defectIds = defectIdsModule.defectIds;
 
 
 
