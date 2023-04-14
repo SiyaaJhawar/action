@@ -37,7 +37,7 @@ const matchingIssueKeys = [];
 const issueKeyRegex = /[A-Z]+-[0-9]+/g;
 
 issueKeys.forEach(issue => {
-  if (issue.fields.comment) {
+  if (issue.fields && issue.fields.comment) {
     const issueDefectIds = issue.fields.comment.comments.map(comment => comment.body.match(defectRegex)).flat().filter(Boolean);
     const defectIds = global.defectIds;
     for (const defectId of defectIds) {
