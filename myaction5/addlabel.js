@@ -34,7 +34,7 @@ async function compareCommitCommentWithJiraIssue() {
 
 
 
-const issueKeys = global.issueKeys;
+
 const defectIds = global.defectIds;
 const matchingIssueKeys = [];
 
