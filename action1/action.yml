@@ -4,6 +4,6 @@ author: 'Siyaa Jhawar'
 
 runs:
   using: 'node12'
-  main: 'second-action.js'
+  main: 'json.js'
 
 
