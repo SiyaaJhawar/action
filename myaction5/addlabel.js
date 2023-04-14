@@ -55,6 +55,7 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
         const matchingIssueKeys = issueKeys.filter(issueKey => {
        const defectRegex = new RegExp(`(${defectIds.join('|')})`, 'i');
 
+
          return defectRegex.test(issueKey);
         });
         console.log(`Found matching issue keys: ${matchingIssueKeys.join(', ')}`);
