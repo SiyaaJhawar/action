@@ -5,7 +5,7 @@ author: 'Siyaa Jhawar'
 
 runs:
   using: 'node12'
-  main: 'test.js'
+  main: 'index.js'
 
 
 
