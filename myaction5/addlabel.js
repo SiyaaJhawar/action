@@ -44,6 +44,7 @@ issueKeys.forEach(issueKey => {
   for (const defectId of defectIds) {
     if (issueDefectIds.includes(defectId)) {
       matchingIssueKeys.push(issueKey);
+      console.log(matchingIssueKeys);
       break;
     }
   }
