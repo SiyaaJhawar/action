@@ -53,7 +53,7 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
 
         
 const defectRegex = new RegExp(`(${defectIds.join('|')})`, 'i'); // 'i' flag to ignore case
-const issueRegex = /^[A-Za-z_]{2,}-\d+$/; // Matches uppercase or lowercase letters and underscores, followed by a hyphen and one or more digits
+const issueRegex = /([A-Z]{3})-(\d+)/g; // Matches uppercase or lowercase letters and underscores, followed by a hyphen and one or more digits
 
 const matchingIssueKeys = issueKeys.filter(issueKey => {
   return defectRegex.test(issueKey) && issueRegex.test(issueKey);
