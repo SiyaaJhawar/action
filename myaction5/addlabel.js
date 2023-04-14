@@ -51,12 +51,13 @@ console.log(defectIds); // Output: ["DEF1", "DEF2", "DEF3"]
         const issueKeys = data.issues.map(issue => issue.key); // Extract the keys of all the issues
         console.log(`Found the following issue keys: ${issueKeys.join(', ')}`);
 
-        // Check if any of the issue keys match a defect ID
-        const matchingIssueKeys = issueKeys.filter(issueKey => {
-       const defectRegex = new RegExp(`(${defectIds.join('|')})`, 'i');
-
-
-         return defectRegex.test(issueKey);
+        console.log(`Found the following issue keys: ${issueKeys.join(', ')}`);
+console.log(`Using the following defect IDs: ${defectIds.join(', ')}`);
+const matchingIssueKeys = issueKeys.filter(issueKey => {
+  const defectRegex = new RegExp(`(${defectIds.join('|')})`, 'i');
+  const isMatch = defectRegex.test(issueKey);
+  console.log(`Checking issue key ${issueKey}, isMatch: ${isMatch}`);
+  return isMatch;
         });
         console.log(`Found matching issue keys: ${matchingIssueKeys.join(', ')}`);
 
