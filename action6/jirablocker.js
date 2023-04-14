@@ -24,11 +24,13 @@ fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
     // For example, you can display a message to the user
     console.log("There are no Jira issues at this time.");
   } else {
-    console.log("Jira list is non-empty. No-go.");
+    console.log("Jira list is non-empty. Go.");
+
     json.issues.forEach(issue => {
       console.log(issue.key, issue.fields.summary);
-      // Do something else with the Jira issues here
+      // Do something with the Jira issues here
     });
+
     // Add code to handle the non-empty list here
     // For example, you can display the Jira issues to the user
     console.log(`There are ${json.issues.length} Jira issues.`);
