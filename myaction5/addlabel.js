@@ -1,13 +1,26 @@
 import axios from 'axios';
 import fetch from 'node-fetch';
-import '../action4/defectid.js';
 
+const githubUrl = 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments';
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
+const username = process.env.GITHUB_USERNAME;
+const password = process.env.GITHUB_API_TOKEN;
+
+const defectRegex = /([A-Z]{1}[A-Z]{2,})-\d+/g;
 
 async function compareCommitCommentWithJiraIssue() {
   try {
-    const defectIds = global.defectIds;
+    const encodedCredentials = Buffer.from(`${username}:${password}`).toString('base64');
+    const commitsResponse = await axios.get(githubUrl, {
+      headers: {
+        "Authorization": `Basic ${encodedCredentials}`,
+        "Accept": "application/json"
+      }
+    });
+
+    const commentTexts = commitsResponse.data.map(comment => comment.body);
+    const defectIds = commentTexts.flatMap(text => text.match(defectRegex));
     console.log(`Found the following defect IDs in commit comments: ${defectIds}`);
     console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
@@ -22,7 +35,9 @@ async function compareCommitCommentWithJiraIssue() {
       }
     })
     .then(response => {
-      console.log(`Response: ${response.status} ${response.statusText}`);
+      console.log(
+        `Response: ${response.status} ${response.statusText}`
+      );
       return response.json(); // Parse the response as JSON
     })
     .then(data => {
@@ -30,52 +45,57 @@ async function compareCommitCommentWithJiraIssue() {
         const issueKeys = data.issues.map(issue => issue.key); // Extract the keys of all the issues
         console.log(`Found the following issue keys: ${issueKeys.join(', ')}`);
 
-        // Find the matching keys and add the label
-        for (let key of issueKeys) {
-          for (let id of defectIds) {
-            if (key === id) {
-              console.log(`Match found: ${key}`);
-              // Add the label to the issue
-              axios({
-                method: 'post',
-                url: `https://swgup.atlassian.net/rest/api/3/issue/${key}/labels`,
+        // Check if any of the issue keys match a defect ID
+        const matchingIssueKeys = issueKeys.filter(issueKey => {
+          const regex = new RegExp(`(${defectIds.join('|')})`);
+          return regex.test(issueKey);
+        });
+        console.log(`Found matching issue keys: ${matchingIssueKeys.join(', ')}`);
+
+        // Add label to the matching issues
+        matchingIssueKeys.forEach(issueKey => {
+      
+         fetch(`https://swgup.atlassian.net/rest/api/2/issue/${issueKey}`, {
+                   method: 'PUT',
                 headers: {
-                  'Authorization': `Basic ${Buffer.from(
-                    `${jiraUsername}:${jiraapitoken}`
-                  ).toString('base64')}`,
-                  'Content-Type': 'application/json'
-                },
-                data: {
-                  "update": {
-                    "labels": [
-                      {
-                        "add": "found-in-commit"
-                      }
-                    ]
-                  }
-                }
-              })
-              .then(response => {
-                console.log(`Label added to issue ${key}`);
-              })
-              .catch(error => {
-                console.error(`Error adding label to issue ${key}: ${error}`);
-              });
-            }
-          }
+        'Authorization': `Basic ${Buffer.from(
+          `${jiraUsername}:${jiraapitoken}`
+        ).toString('base64')}`,
+        'Content-Type': 'application/json'
+      },
+ body: JSON.stringify({
+    "update": {
+      "labels": [
+        {
+          "add": "int-deploy"
         }
+      ]
+    }
+  })
+})  .then(response => {
+            console.log(
+              `Response: ${response.status} ${response.statusText}`
+            );
+            if (response.ok) {
+              console.log(`Added label to issue ${issueKey}.`);
+            } else {
+              console.log(`Failed to add label to issue ${issueKey}.`);
+            }
+          })
+          .catch(error => {
+            console.error(`Error adding label to issue ${issueKey}:`, error);
+          });
+        });
+      } else {
+        console.log('No issues found in response.');
       }
     })
     .catch(error => {
-      console.error(`Error fetching issues from Jira: ${error}`);
+      console.error('Error fetching issues:', error);
     });
   } catch (error) {
-    console.error(`Error comparing commit comments with Jira issues: ${error}`);
+    console.error(error);
   }
 }
-
 compareCommitCommentWithJiraIssue();
-
-
-
 
