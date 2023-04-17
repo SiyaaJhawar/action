@@ -8,7 +8,7 @@ inputs:
   jira_api_token:
     description: 'The API token for Jira authentication'
     required: true
-  url:
+  jira_url:
     description: 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues'
     required: true
 
