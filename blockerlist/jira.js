@@ -8,6 +8,9 @@ var jiraUsername = process.env.JIRA_USERNAME;
 var jiraApiToken = process.env.JIRA_API_TOKEN;
 console.log(`username: ${jiraUsername}`);
 console.log(`APItoken: ${jiraApiToken}`);
+const url = process.env.url;
+xhr.open('GET', url);
+
 
 //xhr.open("GET", "https://swgup.atlassian.net/rest/api/3/search?filter=allissues", true);
 xhr.setRequestHeader('Authorization', 'Basic ' + Buffer.from(jiraUsername + ':' + jiraApiToken).toString('base64'));
