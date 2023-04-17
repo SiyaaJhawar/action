@@ -4,8 +4,8 @@ import fetch from 'node-fetch';
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraApiToken = process.env.JIRA_API_TOKEN;
 
-const jql = 'project=SWT AND labels=blocker';
-const jira_url = 'https://swgup.atlassian.net/rest/api/3/search';
+const jql = 'project="SWT" AND Labels="blocker"';
+const jira_url = 'https://swgup.atlassian.net/rest/api/3/search?jql=project="SWT" AND Labels="blocker"';
 const auth = 'Basic ' + Buffer.from('jiraUsername:jiraApiToken').toString('base64');
 const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
 
