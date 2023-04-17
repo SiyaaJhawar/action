@@ -12,9 +12,10 @@ const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
 const checkIssues = async () => {
   try {
     const response = await fetch(`${jira_url}?jql=${jql}`, { headers });
-    const issues = (await response.json()).issues;
+    const response = await fetch(`${jira_url}?jql=${jql}`, { headers });
+    const json = await response.json();
 
-    if (issues.length === 0) {
+    if (json.issues === undefined || json.issues.length === 0){
       console.log('go');
     } else {
       console.log('nogo');
