@@ -3,9 +3,9 @@ import { XMLHttpRequest } from "xmlhttprequest";
 
 
  
-var xhr = new XMLHttpRequest();
-var jiraUsername = process.env.JIRA_USERNAME;
-var jiraApiToken = process.env.JIRA_API_TOKEN;
+const xhr = new XMLHttpRequest();
+const jiraUsername = process.env.JIRA_USERNAME;
+const jiraApiToken = process.env.JIRA_API_TOKEN;
 console.log(`username: ${jiraUsername}`);
 console.log(`APItoken: ${jiraApiToken}`);
 const url = process.env.url;
