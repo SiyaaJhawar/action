@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
 
-const jiraUrl = 'https://your-jira-domain.atlassian.net/rest/api/latest/search';
+const jiraUrl = 'https://swgup.atlassian.net/rest/api/3/search';
 const jiraParams = {
   jql: 'filter=allissues AND labels=blocker', 
   maxResults: 0, 
