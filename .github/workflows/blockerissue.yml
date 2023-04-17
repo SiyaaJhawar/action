@@ -14,7 +14,7 @@ jobs:
       - name: Debug
         run: echo "URL is ${{ github.event.inputs.url }}"
       - name: My action
-        uses: ./blockerlist
+        uses: ./action.yml@main
         with:
          url: ${{ github.event.inputs.url }}
         env: 
