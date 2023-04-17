@@ -1,33 +1,22 @@
 
-name: Check Jira Issue List
-
-description: |
-  This GitHub Action checks if a list of Jira issues is empty or not.
-
-inputs:
-  jira-issue-list:
-    description: 'A list of Jira issues to check'
-    required: true
-
-outputs:
-  result:
-    description: 'The result of the Jira issue list check'
-    value: ''
-
+name: My Action
+description: My action description
 runs:
-  using: 'node12'
+  using: "node12"
   steps:
-    - name: Check if Jira issue list is empty
+    - name: Check Jira Issues
       run: |
-        const jiraIssueList = JSON.parse(process.env.INPUT_JIRA_ISSUE_LIST);
-        if (jiraIssueList.length === 0) {
-          console.log("Jira issue list is empty");
-          console.log("Setting output result to go");
-          console.log("::set-output name=result::go");
+        const jiraIssues = JSON.parse(process.env.INPUT_JIRA_ISSUES);
+        if (jiraIssues.length === 0) {
+          console.log("No Jira issues found. Skipping further steps.");
+          process.exit(0);
         } else {
-          console.log("Jira issue list is not empty");
-          console.log("Setting output result to nogo");
-          console.log("::set-output name=result::nogo");
+          console.log("Jira issues found. Proceeding with further steps.");
+          // Add your further steps here
         }
       env:
-        INPUT_JIRA_ISSUE_LIST: ${{ toJson(inputs.jira-issue-list) }}
+        INPUT_JIRA_ISSUES: ${{ toJson(inputs.jira_issues) }}
+  inputs:
+    jira_issues:
+      description: 'Comma-separated list of Jira issues'
+      required: true
