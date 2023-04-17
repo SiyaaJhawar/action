@@ -15,7 +15,7 @@ jobs:
         run: |
           npm install
           npm install node-fetch
-      - uses: ./action4
+      - uses: ./GithubCommitComment
 
        
        
