@@ -5,7 +5,7 @@ const jiraapitoken = process.env.JIRA_API_TOKEN;
 const jql_blocker = 'filter=allissues and labels=blocker';
 const jql_all = 'filter=allissues';
 const jira_url = 'https://swgup.atlassian.net/rest/api/3/search';
-const auth = 'Basic ' + btoa('username:password');
+const auth = 'Basic ' + Buffer.from('jiraUsername:jiraapitoken').toString('base64');
 const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
 
 const checkIssues = async () => {
