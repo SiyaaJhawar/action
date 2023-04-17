@@ -1,17 +1,19 @@
-name: Example Action
-description: An example GitHub Action that performs a GET request
-
+name: Jira Blocker List
+description: Lists Jira issues that are blockers
 inputs:
+  jira_url:
+    description: 'The URL of the Jira instance'
+    required: true
   jira_username:
-    description: 'The username for Jira authentication'
+    description: 'The username for the Jira account'
     required: true
   jira_api_token:
-    description: 'The API token for Jira authentication'
+    description: 'The API token for the Jira account'
     required: true
-  jira_url:
-    description: 'the jira api to hit'
-    required: true
-
+outputs:
+  blocker_list:
+    description: 'A list of Jira issues that are blockers'
 runs:
-  using: 'node12'
-  main: 'jira.js'
+  using: node12
+  main: jira.js
+
