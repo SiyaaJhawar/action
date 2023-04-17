@@ -2,21 +2,10 @@
 name: My Action
 description: My action description
 inputs:
-  jira_issues:
-    description: 'Comma-separated list of Jira issues'
-    required: true
+  
+outputs:
+     description: 'if jira lis is empty then print('GO')else if list is non-empty then print('NOGO')
+   
 runs:
-  using: "node12"
-  steps:
-    - name: Check Jira Issues
-      run: |
-        const jiraIssues = JSON.parse(process.env.INPUT_JIRA_ISSUES);
-        if (jiraIssues.length === 0) {
-          console.log("No Jira issues found. Skipping further steps.");
-          process.exit(0);
-        } else {
-          console.log("Jira issues found. Proceeding with further steps.");
-          // Add your further steps here
-        }
-      env:
-        INPUT_JIRA_ISSUES: ${{ toJson(inputs.jira_issues) }}
+  using: 'node16'
+  main: 'jirablocker.js'
