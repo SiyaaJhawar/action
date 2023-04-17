@@ -1,22 +1,17 @@
-name: Jira Blocker List
-description: Generates a list of Jira issues with the "Blocker" priority.
+name: Example Action
+description: An example GitHub Action that performs a GET request
 
 inputs:
-  jira-token:
-    description: 'Jira access token to authenticate with Jira API'
+  jira_username:
+    description: 'The username for Jira authentication'
+    required: true
+  jira_api_token:
+    description: 'The API token for Jira authentication'
     required: true
   url:
-    description: 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues'
-    required: true
-    
- jira-project:
-    description: 'Jira project key'
+    description: 'The URL to access for the GET request'
     required: true
 
-outputs:
-  blocker-issues:
-    description: 'A list of Jira issues'
-    
 runs:
   using: 'node12'
-  main: 'jira.js'
+  main: 'index.js'
