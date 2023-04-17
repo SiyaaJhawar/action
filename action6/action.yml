@@ -1,19 +1,30 @@
 
-name: Jira Blocker List
-description: Generates a list of Jira issues with the "Blocker" priority.
+name: Check Jira Issue List
+
+description: |
+  This GitHub Action checks if a list of Jira issues is empty or not.
 
 inputs:
-  jira-token:
-    description: 'Jira access token to authenticate with Jira API'
-    required: true
-  jira-url:
-    description: 'Jira instance URL'
-    required: true
-  jira-project:
-    description: 'Jira project key'
+  jira-issue-list:
+    description: 'A list of Jira issues to check'
     required: true
 
+outputs:
+  result:
+    description: 'The result of the Jira issue list check'
+    value: ''
 
 runs:
   using: 'node12'
   main: 'jirablocker.js'
+  steps:
+    - name: Check if Jira issue list is empty
+      run: |
+        const jiraIssueList = JSON.parse(process.env.INPUT_JIRA_ISSUE_LIST);
+        if (jiraIssueList.length === 0) {
+          console.log('::set-output name=result::go');
+        } else {
+          console.log('::set-output name=result::nogo');
+        }
+      env:
+        INPUT_JIRA_ISSUE_LIST: ${{ inputs.jira-issue-list }}
