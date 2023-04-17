@@ -16,7 +16,7 @@ jobs:
       - name: My action
         uses: ./blockerlist
         with:
-         url: ${{ github.event.inputs.url }}
+         url: ${{ secrets.JIRA_URL }}
         env: 
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
