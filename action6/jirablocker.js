@@ -22,7 +22,7 @@ fetch(`${jiraUrl}?${new URLSearchParams(jiraParams)}`, {
     console.log(`There are ${totalIssues} Jira issues with the "blocker" label.`);
   } else {
     console.log('There are no Jira issues with the "blocker" label.');
-    console.log('nogo');
+    console.log('go');
   }
 })
 .catch(error => {
