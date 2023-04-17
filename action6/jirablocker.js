@@ -1,5 +1,6 @@
 
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
+
 
 const jql_blocker = 'filter=allissues and label=blocker';
 const jql_all = 'filter=allissues';
