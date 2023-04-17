@@ -11,12 +11,13 @@ jobs:
      
       - name: Get JIRA Blocker List
         uses: actions/checkout@v2
+      - name: Debug
+        run: echo "URL is ${{ github.event.inputs.url }}"
       - name: My action
         uses: ./blockerlist
         with:
-         url: 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues'
-        env:
-          
+         url: ${{ github.event.inputs.url }}
+        env: 
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
           
