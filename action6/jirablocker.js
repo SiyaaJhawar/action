@@ -15,7 +15,9 @@ const checkIssues = async () => {
     const response = await fetch(`${jira_url}?jql=${jql}`, { headers });
     const json = await response.json();
 
-    if (json.issues === undefined || json.issues.length === 0){
+   if (json.issues === undefined || json.issues.length === 0) {
+      console.log('go');
+    } else if (Object.keys(json).length === 0) {
       console.log('go');
     } else {
       console.log('nogo');
