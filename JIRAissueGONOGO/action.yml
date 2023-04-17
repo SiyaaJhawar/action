@@ -13,8 +13,9 @@ inputs:
     required: true
   
 outputs:
-  jira_status:
-    description: 'The status of the Jira list. Possible values are "GO" and "NOGO".'
+  go_no_go:
+    description: 'Whether to proceed with the workflow or not. Can be "GO" or "NOGO"'
+
 
 runs:
   using: 'node16'
