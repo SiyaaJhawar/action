@@ -9,9 +9,9 @@ inputs:
     description: 'The API token for Jira authentication'
     required: true
   url:
-    description: 'The URL to access for the GET request'
+    description: 'The URL to access for the GET  request'
     required: true
 
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'jira.js'
