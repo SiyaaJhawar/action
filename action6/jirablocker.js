@@ -1,11 +1,10 @@
 
-const jiraUsername = process.env.JIRA_USERNAME;
-const jiraapitoken = process.env.JIRA_API_TOKEN;
+const fetch = require('node-fetch');
 
-const jql_blocker = 'filter=allissues and labels=blocker';
+const jql_blocker = 'filter=allissues and label=blocker';
 const jql_all = 'filter=allissues';
-const jira_url = 'https://swgup.atlassian.net/rest/api/3/search';
-const auth = 'Basic ' + Buffer.from('jiraUsername:jiraapitoken').toString('base64');
+const jira_url = 'https://your-jira-server.com/rest/api/latest/search';
+const auth = 'Basic ' + Buffer.from('username:password').toString('base64');
 const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
 
 const checkIssues = async () => {
