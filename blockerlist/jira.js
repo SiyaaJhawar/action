@@ -6,9 +6,10 @@ import { XMLHttpRequest } from "xmlhttprequest";
 const xhr = new XMLHttpRequest();
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraApiToken = process.env.JIRA_API_TOKEN;
+const url = process.env.INPUT_url;
 console.log(`username: ${jiraUsername}`);
 console.log(`APItoken: ${jiraApiToken}`);
-const url = process.env.JIRA_URL;
+
 if (url) {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', url.toString());
