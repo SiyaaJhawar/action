@@ -16,7 +16,7 @@ jobs:
       - name: My action
         uses: ./blockerlist
         with:
-          jira_url: ${{ secrets.jira_url }}
+          jira_url: ${{ secrets.JIRA_URL }}
           jira_username: ${{ secrets.JIRA_USERNAME }}
           jira_api_token: ${{ secrets.JIRA_API_TOKEN }}
           
