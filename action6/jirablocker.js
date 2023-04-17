@@ -2,32 +2,29 @@ import fetch from 'node-fetch';
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
 
-fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
-  method: 'GET',
-  headers: {
-    'Authorization': `Basic ${Buffer.from(
-      `${jiraUsername}:${jiraapitoken}`
-    ).toString('base64')}`,
-    'Accept': 'application/json'
-  }
-})
-.then(response => {
-  console.log(`Response: ${response.status} ${response.statusText}`);
-  return response.json();
-})
-.then(json => {
-  if (json.issues.length !== 0) {
-    console.log("Jira list is non-empty.");
+const jiraUrl = 'https://your-jira-domain.atlassian.net/rest/api/latest/search';
+const jiraParams = {
+  jql: 'filter=allissues AND labels=blocker', 
+  maxResults: 0, 
+};
 
-    // Add code to handle the non-empty list here
-    // For example, you can display the Jira issues to the user
-    json.issues.forEach(issue => {
-      console.log(issue.key, issue.fields.summary);
-      // Do something with the Jira issues here
-    });
-    console.log(`There are ${json.issues.length} Jira issues.`);
+// Fetch the Jira issues using the API
+fetch(`${jiraUrl}?${new URLSearchParams(jiraParams)}`, {
+  headers: {
+    'Authorization': 'Basic ' + Buffer.from('jiraUsername:jiraapitoken').toString('base64'), // replace with your Jira email and API token
+    'Content-Type': 'application/json',
+  },
+})
+.then(response => response.json())
+.then(data => {
+  const totalIssues = data.total;
+  if (totalIssues > 0) {
+    console.log(`There are ${totalIssues} Jira issues with the "blocker" label.`);
   } else {
-    throw new Error("Jira list is empty.");
+    console.log('There are no Jira issues with the "blocker" label.');
+    console.log('nogo');
   }
 })
-.catch(err => console.error(err.message));
+.catch(error => {
+  console.error('Error fetching Jira issues:', error);
+});
