@@ -8,7 +8,7 @@ const jiraUsername = process.env.JIRA_USERNAME;
 const jiraApiToken = process.env.JIRA_API_TOKEN;
 console.log(`username: ${jiraUsername}`);
 console.log(`APItoken: ${jiraApiToken}`);
-const url = process.env['INPUT_URL'];
+const url = process.env['url'];
 if (url) {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', url.toString());
