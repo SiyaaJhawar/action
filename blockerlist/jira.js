@@ -4,16 +4,17 @@ import { XMLHttpRequest } from "xmlhttprequest";
 
  
 const xhr = new XMLHttpRequest();
+const url = process.env.jira_url;
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraApiToken = process.env.JIRA_API_TOKEN;
-const url = process.env.jira_url;
+
 console.log(`url: ${url}`);
 
 console.log(`username: ${jiraUsername}`);
 console.log(`APItoken: ${jiraApiToken}`);
 
 if (url) {
-  const xhr = new XMLHttpRequest();
+ // const xhr = new XMLHttpRequest();
   xhr.open('GET', url.toString());
  xhr.setRequestHeader('Authorization', 'Basic ' + Buffer.from(jiraUsername + ':' + jiraApiToken).toString('base64'));
 
