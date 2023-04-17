@@ -9,7 +9,7 @@ inputs:
     description: 'The API token for Jira authentication'
     required: true
   url:
-    description: 'The URL to access for the GET  request'
+    description: 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues'
     required: true
 
 runs:
