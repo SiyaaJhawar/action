@@ -8,6 +8,7 @@ inputs:
   url:
     description: 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues'
     required: true
+    
  jira-project:
     description: 'Jira project key'
     required: true
