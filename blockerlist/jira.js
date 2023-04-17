@@ -9,13 +9,22 @@ var jiraApiToken = process.env.JIRA_API_TOKEN;
 console.log(`username: ${jiraUsername}`);
 console.log(`APItoken: ${jiraApiToken}`);
 const url = process.env.url;
-xhr.open('GET', url);
+if (url) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', url.toString());
+ xhr.setRequestHeader('Authorization', 'Basic ' + Buffer.from(jiraUsername + ':' + jiraApiToken).toString('base64'));
+
+  xhr.send();
+} else {
+  console.error('URL is undefined');
+}
+
+
 
 
 //xhr.open("GET", "https://swgup.atlassian.net/rest/api/3/search?filter=allissues", true);
-xhr.setRequestHeader('Authorization', 'Basic ' + Buffer.from(jiraUsername + ':' + jiraApiToken).toString('base64'));
 
-xhr.send();
+//xhr.send();
  
 xhr.onreadystatechange = function () {
   console.log("readyState = " + this.readyState + ", status = " + this.status);
