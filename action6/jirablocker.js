@@ -19,10 +19,10 @@ const checkIssues = async () => {
     const response2 = await fetch(`${jira_url}?jql=${jql_all}`, { headers });
     const all_issues = (await response2.json()).total;
 
-    if (blocker_issues > 0 || all_issues > 0) {
-      console.log('No go');
-    } else {
+     if (blocker_issues === 1 && all_issues > 1) {
       console.log('Go');
+    } else {
+      console.log('No go');
     }
   } catch (error) {
     console.error(error);
