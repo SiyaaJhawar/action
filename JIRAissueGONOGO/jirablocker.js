@@ -5,7 +5,7 @@ const jiraUsername = process.env.JIRA_USERNAME;
 const jiraApiToken = process.env.JIRA_API_TOKEN;
 
 const jql = 'project=SWT AND filter=10003';
-const jira_url = 'https://swgup.atlassian.net/rest/api/3/search';
+const jira_url = process.env.JIRA_URL;
 const auth = 'Basic ' + Buffer.from(`${jiraUsername}:${jiraApiToken}`).toString('base64');
 
 const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
