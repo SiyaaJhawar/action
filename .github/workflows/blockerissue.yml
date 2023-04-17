@@ -16,7 +16,7 @@ jobs:
       - name: My action
         uses: ./blockerlist
         with:
-         url: ${{ secrets.JIRA_URL }}
+         url: 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues'
         env: 
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
