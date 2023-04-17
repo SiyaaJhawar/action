@@ -16,7 +16,7 @@ outputs:
 
 runs:
   using: 'node12'
-  main: 'jirablocker.js'
+
   steps:
     - name: Check if Jira issue list is empty
       run: |
