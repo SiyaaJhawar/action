@@ -6,10 +6,9 @@ inputs:
     description: 'Jira access token to authenticate with Jira API'
     required: true
   url:
-    description: 'jira api url to fetch the issue'
+    description: 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues'
     required: true
-    default: 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues'
-  jira-project:
+ jira-project:
     description: 'Jira project key'
     required: true
 
