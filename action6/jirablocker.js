@@ -19,9 +19,9 @@ const checkIssues = async () => {
    if (json.issues === undefined || json.issues.length === 0) {
       console.log('go');
     } else if (Object.keys(json).length === 0) {
-      console.log('go');
+      console.log('GO');
     } else {
-      console.log('nogo');
+      console.log('NOGO');
     }
   } catch (error) {
     console.error(error);
