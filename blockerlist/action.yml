@@ -6,7 +6,7 @@ inputs:
     description: 'Jira access token to authenticate with Jira API'
     required: true
   jira-url:
-    description: 'Jira instance URL'
+    description: 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues'
     required: true
   jira-project:
     description: 'Jira project key'
@@ -14,7 +14,7 @@ inputs:
 
 outputs:
   blocker-issues:
-    description: 'A list of Jira issues with the "Blocker" priority'
+    description: 'A list of Jira issues'
     
 runs:
   using: 'node12'
