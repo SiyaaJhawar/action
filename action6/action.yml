@@ -16,15 +16,18 @@ outputs:
 
 runs:
   using: 'node12'
-
   steps:
     - name: Check if Jira issue list is empty
       run: |
         const jiraIssueList = JSON.parse(process.env.INPUT_JIRA_ISSUE_LIST);
         if (jiraIssueList.length === 0) {
-          console.log('::set-output name=result::go');
+          console.log("Jira issue list is empty");
+          console.log("Setting output result to go");
+          console.log("::set-output name=result::go");
         } else {
-          console.log('::set-output name=result::nogo');
+          console.log("Jira issue list is not empty");
+          console.log("Setting output result to nogo");
+          console.log("::set-output name=result::nogo");
         }
       env:
-        INPUT_JIRA_ISSUE_LIST: ${{ inputs.jira-issue-list }}
+        INPUT_JIRA_ISSUE_LIST: ${{ toJson(inputs.jira-issue-list) }}
