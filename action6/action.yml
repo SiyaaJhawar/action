@@ -2,9 +2,18 @@
 name: My Action
 description: My action description
 inputs:
+  jira_url:
+    description: 'The URL of the Jira instance'
+    required: true
+  jira_username:
+    description: 'The username for the Jira account'
+    required: true
+  jira_api_token:
+    description: 'The API token for the Jira account'
+    required: true
   
 outputs:
-     description: 'if jira lis is empty then print('GO')else if list is non-empty then print('NOGO')
+     description: 'if jira list is empty then print('GO')else if list is non-empty then print('NOGO')
    
 runs:
   using: 'node16'
