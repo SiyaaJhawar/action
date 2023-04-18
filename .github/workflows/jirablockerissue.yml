@@ -14,7 +14,7 @@ jobs:
       - name: Debug
         run: echo "URL is ${{ github.event.inputs.jira_url }}"
       - name: My action
-        uses: ./blockerlist
+        uses: ./Jirablockerlist
         with:
           jira_url: 'https://swgup.atlassian.net/rest/api/3/search'
         env: 
