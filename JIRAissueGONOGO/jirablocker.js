@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraApiToken = process.env.JIRA_API_TOKEN;
-const jira_url = process.env.JIRA_URL;
+const jira_url = process.env.INPUT_JIRA_URL;
 const auth = 'Basic ' + Buffer.from(`${jiraUsername}:${jiraApiToken}`).toString('base64');
 
 const checkIssues = async () => {
