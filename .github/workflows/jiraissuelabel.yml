@@ -12,11 +12,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      -  name: my action
      
-      -  uses: ./jiraissuelabel
+         uses: ./jiraissuelabel
+         with:
+         github_url: '
          env:
-          JIRA_URL: ${{ secrets.JIRA_URL }}
+         
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
