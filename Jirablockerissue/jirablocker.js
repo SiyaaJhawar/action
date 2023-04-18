@@ -15,7 +15,7 @@ const checkIssues = async () => {
     const json = await response.json();
 
    if (json.issues === undefined || json.issues.length === 0) {
-      console.log('go');
+      console.log('GO');
     } else if (Object.keys(json).length === 0) {
       console.log('GO');
     } else {
