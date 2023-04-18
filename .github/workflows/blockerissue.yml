@@ -16,14 +16,11 @@ jobs:
       - name: My action
         uses: ./blockerlist
         with:
-          jira_url: ${{ secrets.JIRA_URL }}
-          jira_username: ${{ secrets.JIRA_USERNAME }}
-          jira_api_token: ${{ secrets.JIRA_API_TOKEN }}
-          
+          jira_url: 'https://swgup.atlassian.net/rest/api/3/search'
         env: 
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-          JIRA_URL: ${{ secrets.JIRA_URL }}
+        
 
      
      
