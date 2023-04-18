@@ -7,7 +7,8 @@ import fetch from 'node-fetch';
 const owner = "SiyaaJhawar";
 const repo = "action";
 
-const url = process.env.GITHUB_URL;
+const url = process.env.INPUT_GITHUB_URL;
+
 const username = process.env.GITHUB_USERNAME;
                                             
 const password = process.env.GITHUB_API_TOKEN;
