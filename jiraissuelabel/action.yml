@@ -1,14 +1,14 @@
 name: Jira Issue Labeler
 description: This action compares a commit comment defect ID with a Jira issue key, and if they match, it adds a label to the corresponding Jira issue.
 inputs:
-  commit_comment_defect_id:
-    description: 'The defect ID in the commit comment.'
+  github_url:
+    description: 'The url for commit comment .'
     required: true
   jira_issue_key:
     description: 'The Jira issue key to compare the commit comment defect ID against.'
     required: true
-  jira_base_url:
-    description: 'The base URL of the Jira instance.'
+  jira_url:
+    description: 'The URL of the Jira instance.'
     required: true
   jira_username:
     description: 'The username to use to authenticate with the Jira API.'
