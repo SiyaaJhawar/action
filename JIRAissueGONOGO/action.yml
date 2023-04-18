@@ -15,7 +15,7 @@ inputs:
   jql:
     description: 'The JQL query used to filter JIRA issues.'
     required: true
-    default: 'project=SWT AND filter=10001'
+    default: 'project=SWT AND filter=10003'
 
   
 outputs:
