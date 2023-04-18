@@ -4,13 +4,14 @@ import fetch from 'node-fetch';
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraApiToken = process.env.JIRA_API_TOKEN;
 
-const jql = 'project=SWT AND filter=10001';
+
 const jira_url = process.env.JIRA_URL;
 const auth = 'Basic ' + Buffer.from(`${jiraUsername}:${jiraApiToken}`).toString('base64');
 
 const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
 
 const checkIssues = async () => {
+   const jql = process.env.INPUT_JQL
   try {
    
     const response = await fetch(`${jira_url}?jql=${jql}`, { headers });
