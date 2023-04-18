@@ -11,6 +11,12 @@ inputs:
   jira_api_token:
     description: 'The API token for the Jira account'
     required: true
+    
+  jql:
+    description: 'The JQL query used to filter JIRA issues.'
+    required: true
+    default: 'project=SWT AND filter=10001'
+
   
 outputs:
   go_no_go:
