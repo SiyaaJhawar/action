@@ -1,7 +1,8 @@
 import axios from 'axios';
 import fetch from 'node-fetch';
 
-const githubUrl = 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments';
+const githubUrl = process.env.INPUT_GITHUB_URL;
+const jiraUrl = process.env.INPUT_JIRA_URL;
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
 const username = process.env.GITHUB_USERNAME;
@@ -25,7 +26,7 @@ async function compareCommitCommentWithJiraIssue() {
     console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
 
-    fetch('https://swgup.atlassian.net/rest/api/3/search?filter=allissues', {
+    fetch(jiraUrl, {
       method: 'GET',
       headers: {
         'Authorization': `Basic ${Buffer.from(
