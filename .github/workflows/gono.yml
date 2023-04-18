@@ -15,7 +15,7 @@ jobs:
       - name: My action
         uses: ./JIRAissueGONOGO
         with:
-          jira_url: '
+          jira_url: 'https://swgup.atlassian.net/rest/api/3/search'
           jql: 'project=SWT AND filter=10003'
         env: 
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
