@@ -6,8 +6,8 @@ import fetch from 'node-fetch';
 
 const owner = "SiyaaJhawar";
 const repo = "action";
-const commit_sha = "7ba17fe7086423a30485d2949cf32255bc2c479d";
-const url =  `https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments`;
+
+const url = process.env.GITHUB_API_URL;
 const username = process.env.GITHUB_USERNAME;
                                             
 const password = process.env.GITHUB_API_TOKEN;
