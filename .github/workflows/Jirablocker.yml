@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: My action
-        uses: ./JIRAissueGONOGO
+        uses: ./Jirablockerissue
         with:
           jira_url: 'https://swgup.atlassian.net/rest/api/3/search?'
           jql: 'project=SWT AND filter=10003'
