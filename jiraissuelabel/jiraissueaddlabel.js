@@ -1,6 +1,6 @@
 import axios from 'axios';
 import fetch from 'node-fetch';
-import * as core from '@actions/core';
+
 
 
 const githubUrl = process.env.INPUT_GITHUB_URL;
