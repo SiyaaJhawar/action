@@ -7,6 +7,7 @@ const githubUrl = process.env.INPUT_GITHUB_URL;
 const jiraUrl = process.env.INPUT_JIRA_URL;
 const issueUrl = core.getInput('issue-url');
 const apiUrl = `${issueUrl}`;
+const issueKey = issueUrl.match(/(\w+-\d+)/)[0];
 
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
