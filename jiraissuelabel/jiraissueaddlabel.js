@@ -1,11 +1,10 @@
 import axios from 'axios';
 import fetch from 'node-fetch';
-
+import * as core from '@actions/core';
 
 
 const githubUrl = process.env.INPUT_GITHUB_URL;
-const jiraFetchUrl = process.env.INPUT_JIRA_FETCH_URL;
-
+const jiraUrl = process.env.INPUT_JIRA_URL;
 
 
 const jiraUsername = process.env.JIRA_USERNAME;
@@ -31,7 +30,7 @@ async function compareCommitCommentWithJiraIssue() {
     console.log(`Username: ${jiraUsername}`);
     console.log(`Apitoken: ${jiraapitoken}`);
 
-    fetch(jiraFetchUrl, {
+    fetch(jiraUrl, {
       method: 'GET',
       headers: {
         'Authorization': `Basic ${Buffer.from(
@@ -61,8 +60,7 @@ async function compareCommitCommentWithJiraIssue() {
         // Add label to the matching issues
         matchingIssueKeys.forEach(issueKey => {
       
-         fetch('https://swgup.atlassian.net/rest/api/3/issue/${issueKey}', {
-
+         fetch(`https://swgup.atlassian.net/rest/api/2/issue/${issueKey}`, {
                    method: 'PUT',
                 headers: {
         'Authorization': `Basic ${Buffer.from(
@@ -105,4 +103,5 @@ async function compareCommitCommentWithJiraIssue() {
   }
 }
 compareCommitCommentWithJiraIssue();
+
 
