@@ -8,9 +8,10 @@ const url = process.env.INPUT_GITHUB_URL;
 const username = process.env.GITHUB_USERNAME;
                                             
 const password = process.env.GITHUB_API_TOKEN;
+const encodedCredentials = Buffer.from(`${username}:${password}`).toString('base64');
 
 export async function getDefectIds(url, username, password) {
-  const encodedCredentials = Buffer.from(`${username}:${password}`).toString('base64');
+  
 
   try {
     const response = await fetch(url, {
