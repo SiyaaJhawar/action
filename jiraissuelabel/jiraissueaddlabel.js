@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 
 const githubUrl = process.env.INPUT_GITHUB_URL;
 const jiraFetchUrl = process.env.INPUT_JIRA_FETCH_URL;
-const jiraAddLabelUrl = process.env.INPUT_JIRA_ADD_LABEL_URL
+
 
 
 const jiraUsername = process.env.JIRA_USERNAME;
@@ -61,7 +61,7 @@ async function compareCommitCommentWithJiraIssue() {
         // Add label to the matching issues
         matchingIssueKeys.forEach(issueKey => {
       
-         fetch(jiraAddLabelUrl, {
+         fetch('https://swgup.atlassian.net/rest/api/3/issue/${issueKey}', {
 
                    method: 'PUT',
                 headers: {
