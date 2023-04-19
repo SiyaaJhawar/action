@@ -61,7 +61,8 @@ async function compareCommitCommentWithJiraIssue() {
         // Add label to the matching issues
         matchingIssueKeys.forEach(issueKey => {
       
-         fetch(jiraAddLabelUrl/${issueKey}, {
+         fetch(`${jiraAddLabelUrl}/${issueKey}`, {
+
                    method: 'PUT',
                 headers: {
         'Authorization': `Basic ${Buffer.from(
