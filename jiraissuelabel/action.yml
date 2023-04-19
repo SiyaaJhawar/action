@@ -10,9 +10,6 @@ inputs:
   jira-fetch-url:
     description: 'The URL of your Jira instance for fetching issues'
     required: true
-  jira-add-label-url:
-    description: 'The URL of your Jira instance for adding labels to issues'
-    required: true
   jira_username:
     description: 'The username to use to authenticate with the Jira API.'
     required: true
