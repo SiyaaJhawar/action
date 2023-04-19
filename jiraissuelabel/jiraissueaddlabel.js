@@ -3,6 +3,9 @@ import fetch from 'node-fetch';
 
 const githubUrl = process.env.INPUT_GITHUB_URL;
 const jiraUrl = process.env.INPUT_JIRA_URL;
+const issueUrl = core.getInput('issue-url');
+const apiUrl = `${issueUrl}`;
+
 const jiraUsername = process.env.JIRA_USERNAME;
 const jiraapitoken = process.env.JIRA_API_TOKEN;
 const username = process.env.GITHUB_USERNAME;
@@ -56,7 +59,7 @@ async function compareCommitCommentWithJiraIssue() {
         // Add label to the matching issues
         matchingIssueKeys.forEach(issueKey => {
       
-         fetch(`https://swgup.atlassian.net/rest/api/2/issue/${issueKey}`, {
+         fetch(apiUrl, {
                    method: 'PUT',
                 headers: {
         'Authorization': `Basic ${Buffer.from(
