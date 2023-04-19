@@ -7,6 +7,10 @@ inputs:
   jira_issue_key:
     description: 'The Jira issue key to compare the commit comment defect ID against.'
     required: true
+  issue-url:
+    description: 'The URL for the issue'
+    required: true
+    default: 'https://swgup.atlassian.net/rest/api/2/issue/${{ github.event.inputs.issueKey }}'
   jira_url:
     description: 'The URL of the Jira instance.'
     required: true
