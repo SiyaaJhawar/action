@@ -7,8 +7,11 @@ inputs:
   jira_issue_key:
     description: 'The Jira issue key to compare the commit comment defect ID against.'
     required: true
-  jira_url:
-    description: 'The URL of the Jira instance.'
+  jira-fetch-url:
+    description: 'The URL of your Jira instance for fetching issues'
+    required: true
+  jira-add-label-url:
+    description: 'The URL of your Jira instance for adding labels to issues'
     required: true
   jira_username:
     description: 'The username to use to authenticate with the Jira API.'
