@@ -18,6 +18,7 @@ jobs:
          with:
           github_url: 'https://api.github.com/repos/SiyaaJhawar/action/commits/7ba17fe7086423a30485d2949cf32255bc2c479d/comments'
           jira_url: 'https://swgup.atlassian.net/rest/api/3/search?filter=allissues'
+          issue_url: '${{ inputs.issue-url }}'
          env:
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
