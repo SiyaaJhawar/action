@@ -62,7 +62,7 @@ async function compareCommitCommentWithJiraIssue() {
         // Add label to the matching issues
         matchingIssueKeys.forEach(issueKey => {
       
-         fetch(apiUrl, {
+         fetch(`https://swgup.atlassian.net/rest/api/2/issue/${issueKey}`, {
                    method: 'PUT',
                 headers: {
         'Authorization': `Basic ${Buffer.from(
