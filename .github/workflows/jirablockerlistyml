@@ -11,8 +11,7 @@ jobs:
      
       - name: Get JIRA Blocker List
         uses: actions/checkout@v2
-      - name: Debug
-        run: echo "URL is ${{ github.event.inputs.jira_url }}"
+    
       - name: My action
         uses: ./Jirablockerlist
         with:
