@@ -1,16 +1,10 @@
 import fetch from 'node-fetch';
-
 const owner = "SiyaaJhawar";
 const repo = "action";
-
 const url = process.env.INPUT_GITHUB_URL;
-
 const username = process.env.GITHUB_USERNAME;
-                                            
 const password = process.env.GITHUB_API_TOKEN;
-
 const encodedCredentials = Buffer.from(`${username}:${password}`).toString('base64');
-
 fetch(url, {
   headers: {    
     "Authorization": `Basic ${encodedCredentials}`,
