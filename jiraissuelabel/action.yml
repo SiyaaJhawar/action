@@ -7,7 +7,7 @@ inputs:
   jira_issue_key:
     description: 'The Jira issue key to compare the commit comment defect ID against.'
     required: true
-  jira-fetch-url:
+  jira-url:
     description: 'The URL of your Jira instance for fetching issues'
     required: true
   jira_username:
