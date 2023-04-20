@@ -10,7 +10,11 @@ const checkIssues = async () => {
   // use the jql input value instead of the hardcoded value
   const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
   try {
-    const response = await fetch(`${jira_url}?jql=${jql}`, { headers });
+    const response = await fetch(jira_url, {
+  method: 'POST',
+  headers,
+  body: JSON.stringify({ jql })
+});
     const json = await response.json();
 
    if (json.issues === undefined || json.issues.length === 0) {
