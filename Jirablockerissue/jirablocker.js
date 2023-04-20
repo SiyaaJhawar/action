@@ -6,7 +6,7 @@ const jira_url = process.env.INPUT_JIRA_URL;
 const auth = 'Basic ' + Buffer.from(`${jiraUsername}:${jiraApiToken}`).toString('base64');
 
 const checkIssues = async () => {
-  const jql = process.env.INPUT_JQL ;
+
   // use the jql input value instead of the hardcoded value
   const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
   try {
