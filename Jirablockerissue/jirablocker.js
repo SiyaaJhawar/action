@@ -7,13 +7,12 @@ const auth = 'Basic ' + Buffer.from(`${jiraUsername}:${jiraApiToken}`).toString(
 
 const checkIssues = async () => {
   const jql = process.env.INPUT_JQL ;
-  // use the jql input value instead of the hardcoded value
   const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
   try {
     const response = await fetch(`${jira_url}?jql=${jql}`, { headers });
     const json = await response.json();
 
-  let result;
+    let result;
     if (json.issues === undefined || json.issues.length === 0) {
       result = 'GO';
     } else if (Object.keys(json).length === 0) {
@@ -27,6 +26,9 @@ const checkIssues = async () => {
   }
 };
 
-const output = checkIssues();
-console.log(output);
+const main = async () => {
+  const output = await checkIssues();
+  console.log(output);
+};
 
+main();
