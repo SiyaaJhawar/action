@@ -1,4 +1,3 @@
-
 import fetch from 'node-fetch';
 
 const jiraUsername = process.env.JIRA_USERNAME;
@@ -22,7 +21,11 @@ const checkIssues = async () => {
     } else {
       result = 'NOGO';
     }
-    return result;
+    return {
+      result: result,
+      issuesLength: json.issues ? json.issues.length : 0,
+      jsonKeys: Object.keys(json),
+    };
   } catch (error) {
     console.error(error);
     return { error: error.message };
@@ -31,7 +34,7 @@ const checkIssues = async () => {
 
 const main = async () => {
   const output = await checkIssues();
-  console.log(output);
+  console.log(JSON.stringify(output));
 };
 
 main();
