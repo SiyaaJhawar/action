@@ -34,7 +34,10 @@ const checkIssues = async () => {
 
 const main = async () => {
   const output = await checkIssues();
-  console.log(JSON.stringify(output));
+  const outputJson = JSON.stringify(output);
+  console.log(outputJson);
+ 
 };
 
 main();
+
