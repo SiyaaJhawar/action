@@ -9,7 +9,8 @@ const checkIssues = async () => {
   const jql = process.env.INPUT_JQL ;
   const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
   try {
-    const response = await fetch(`${jira_url}?jql=${jql}`, { headers });
+    const response = await fetch(encodeURI(`${jira_url}?jql=${jql}`), { headers });
+
     const json = await response.json();
 
     let result;
