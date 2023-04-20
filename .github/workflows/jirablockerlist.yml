@@ -1,9 +1,8 @@
 name: Get JIRA Blocker List
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+ workflow_call:
+  
+ workflow_dispatch:
 jobs:
   get-blocker:
     runs-on: ubuntu-latest
