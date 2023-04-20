@@ -15,7 +15,7 @@ jobs:
       - name: My action
         uses: ./Jirablockerissue
         with:
-          jira_url: 'https://swgup.atlassian.net/rest/api/3/search?jql=project=SWT AND filter=10001'
+          jira_url: 'https://swgup.atlassian.net/rest/api/3/search?jql=filter=10001'
          
         env: 
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
