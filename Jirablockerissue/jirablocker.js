@@ -6,30 +6,24 @@ const jira_url = process.env.INPUT_JIRA_URL;
 const auth = 'Basic ' + Buffer.from(`${jiraUsername}:${jiraApiToken}`).toString('base64');
 
 const checkIssues = async () => {
-  const jql = process.env.INPUT_JQL;
+  const jql = process.env.INPUT_JQL ;
+  // use the jql input value instead of the hardcoded value
   const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
   try {
-    const response = await fetch(encodeURI(`${jira_url}?jql=${jql}`), { headers });
-
+    const response = await fetch(`${jira_url}?jql=${jql}`, { headers });
     const json = await response.json();
 
-    let result;
-    if (json.issues === undefined || json.issues.length === 0) {
-      result = 'GO';
+   if (json.issues === undefined || json.issues.length === 0) {
+      console.log('GO');
     } else if (Object.keys(json).length === 0) {
-      result = 'GO';
+      console.log('GO');
     } else {
-      result = 'NOGO';
+      console.log('NOGO');
     }
-    return result;
   } catch (error) {
     console.error(error);
   }
 };
 
-const main = async () => {
-  const output = await checkIssues();
-  console.log(output);
-};
+checkIssues();
 
-main();
