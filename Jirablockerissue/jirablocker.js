@@ -8,20 +8,28 @@ const auth = 'Basic ' + Buffer.from(`${jiraUsername}:${jiraApiToken}`).toString(
 const checkIssues = async () => {
   const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
   try {
-    const response = await fetch(jiraUrl, { headers });
+    const response = await fetch(jiraUrl, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ jql: process.env.INPUT_JQL })
+    });
     const json = await response.json();
 
     if (json.issues === undefined || json.issues.length === 0) {
-      console.log('GO');
+      return 'GO';
     } else if (Object.keys(json).length === 0) {
-      console.log('GO');
+      return 'GO';
     } else {
-      console.log('NOGO');
+      return 'NOGO';
     }
   } catch (error) {
     console.error(error);
   }
 };
 
-checkIssues();
+const main = async () => {
+  const output = await checkIssues();
+  console.log(output);
+};
 
+main();
