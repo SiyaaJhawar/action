@@ -13,7 +13,7 @@ const checkIssues = async () => {
     const response = await fetch(`${jira_url}?jql=${jql}`, { headers });
     const json = await response.json();
 
-    let result;
+  let result;
     if (json.issues === undefined || json.issues.length === 0) {
       result = 'GO';
     } else if (Object.keys(json).length === 0) {
@@ -21,23 +21,12 @@ const checkIssues = async () => {
     } else {
       result = 'NOGO';
     }
-    return {
-      result: result,
-      issuesLength: json.issues ? json.issues.length : 0,
-      jsonKeys: Object.keys(json),
-    };
+    return result;
   } catch (error) {
     console.error(error);
-    return { error: error.message };
   }
 };
 
-const main = async () => {
-  const output = await checkIssues();
-  const outputJson = JSON.stringify(output);
-  console.log(outputJson);
-  // You can now use the outputJson variable to pass the JSON-formatted output to another function or module
-};
-
-main();
+const output = checkIssues();
+console.log(output);
 
