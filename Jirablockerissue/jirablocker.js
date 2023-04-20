@@ -14,7 +14,7 @@ const checkIssues = async () => {
     const response = await fetch(`${jira_url}?jql=${jql}`, { headers });
     const json = await response.json();
 
-  let result;
+    let result;
     if (json.issues === undefined || json.issues.length === 0) {
       result = 'GO';
     } else if (Object.keys(json).length === 0) {
@@ -25,8 +25,13 @@ const checkIssues = async () => {
     return result;
   } catch (error) {
     console.error(error);
+    return { error: error.message };
   }
 };
 
-const output = checkIssues();
-console.log(output);
+const main = async () => {
+  const output = await checkIssues();
+  console.log(output);
+};
+
+main();
