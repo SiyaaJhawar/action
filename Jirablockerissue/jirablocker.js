@@ -6,19 +6,14 @@ const jiraUrl = process.env.INPUT_JIRA_URL;
 const auth = 'Basic ' + Buffer.from(`${jiraUsername}:${jiraApiToken}`).toString('base64');
 
 const checkIssues = async () => {
-  const jql = process.env.INPUT_JQL;
   const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
-  
   try {
-    const response = await fetch(jiraUrl, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ jql })
-    });
-    
+    const response = await fetch(jiraUrl, { headers });
     const json = await response.json();
 
     if (json.issues === undefined || json.issues.length === 0) {
+      console.log('GO');
+    } else if (Object.keys(json).length === 0) {
       console.log('GO');
     } else {
       console.log('NOGO');
