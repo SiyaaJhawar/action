@@ -14,18 +14,18 @@ const checkIssues = async () => {
     const json = await response.json();
 
     let result;
+    let issuesLength = 0;
+    let jsonKeys = [];
     if (json.issues === undefined || json.issues.length === 0) {
       result = 'GO';
     } else if (Object.keys(json).length === 0) {
       result = 'GO';
     } else {
       result = 'NOGO';
+      issuesLength = json.issues.length;
+      jsonKeys = Object.keys(json);
     }
-    return {
-      result: result,
-      issuesLength: json.issues ? json.issues.length : 0,
-      jsonKeys: Object.keys(json),
-    };
+    return { result, issuesLength, jsonKeys };
   } catch (error) {
     console.error(error);
     return { error: error.message };
@@ -33,11 +33,17 @@ const checkIssues = async () => {
 };
 
 const main = async () => {
-  const output = await checkIssues();
-  const outputJson = JSON.stringify(output);
-  console.log(outputJson);
- 
+  const { result, issuesLength, jsonKeys } = await checkIssues();
+  console.log('Result:', result);
+  console.log('Number of issues:', issuesLength);
+  console.log('JSON keys:', jsonKeys);
 };
 
 main();
+
+
+
+
+
+
 
