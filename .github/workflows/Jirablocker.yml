@@ -16,7 +16,7 @@ jobs:
         uses: ./Jirablockerissue
         with:
           jira_url: 'https://swgup.atlassian.net/rest/api/3/search'
-          jql: 'project=SWT AND filter=10001'
+          jql: 'project=SWT AND filter=10003'
         env: 
           JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
