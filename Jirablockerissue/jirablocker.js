@@ -8,11 +8,7 @@ const auth = 'Basic ' + Buffer.from(`${jiraUsername}:${jiraApiToken}`).toString(
 const checkIssues = async () => {
   const headers = { 'Authorization': auth, 'Content-Type': 'application/json' };
   try {
-    const response = await fetch(jiraUrl, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ jql: process.env.INPUT_JQL })
-    });
+    const response = await fetch(jiraUrl, { headers });
     const json = await response.json();
 
     if (json.issues === undefined || json.issues.length === 0) {
@@ -24,6 +20,7 @@ const checkIssues = async () => {
     }
   } catch (error) {
     console.error(error);
+    return 'ERROR';
   }
 };
 
@@ -33,3 +30,4 @@ const main = async () => {
 };
 
 main();
+
